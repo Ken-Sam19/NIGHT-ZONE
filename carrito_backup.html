@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrito - Night Zone</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="icon" type="image/png" href="imagenes.png" />
+    <style>
+      body {
+        background: url("imagenes/galeria/omnia_009.jpg") center/cover fixed
+          no-repeat;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 12, 41, 0.85);
+        z-index: 0;
+      }
+      body > * {
+        position: relative;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tabs">
+      <a href="index.html" class="tab-btn">Inicio</a>
+      <a href="eventos.html" class="tab-btn">Eventos</a>
+      <a href="entradas.html" class="tab-btn">Entradas</a>
+
+      <a href="reservas.html" class="tab-btn">Reservas</a>
+      <a href="bebidas.html" class="tab-btn">Bebidas</a>
+      <a href="carrito.html" class="tab-btn activo"
+        >Carrito <span class="cart-count">0</span></a
+      >
+      <a href="transporte.html" class="tab-btn">Transporte</a>
+      <a href="galeria.html" class="tab-btn">Momentos</a>
+    </div>
+
+    <div class="tabs secundarias">
+      <a href="ubicacion.html" class="tab-btn secundario">Ubicación</a>
+      <a href="clientes.html" class="tab-btn secundario">Clientes</a>
+      <a href="ventas.html" class="tab-btn secundario">Ventas</a>
+    </div>
+
+    <div class="contenido">
+      <a href="index.html" class="volver">← Volver al inicio</a>
+      <img
+        src="imagenes/NIGHT ZONE LOGO.jpg"
+        alt="Night Zone Logo"
+        class="logo-hero"
+      />
+      <h2>Tu Carrito</h2>
+      <p>Revisa los productos que agregaste para comprar.</p>
+
+      <div class="carrito-container">
+        <div id="carrito-contenido">
+          <p class="carrito-vacio">El carrito está vacío.</p>
+        </div>
+        <div class="carrito-resumen" id="carrito-resumen">
+          <div class="carrito-resumen-info">
+            <p>Total de artículos: <strong id="carrito-total">0</strong></p>
+            <p class="carrito-total-precio">
+              Total: <strong id="carrito-subtotal">S/0</strong>
+            </p>
+          </div>
+          <button
+            class="btn-pedido"
+            onclick="realizarPedido()"
+            id="btn-pedido"
+            style="display: none"
+          >
+            <span class="btn-icono">🛒</span> Realizar Pedido
+          </button>
+          <button
+            class="btn-vaciar"
+            onclick="vaciarCarrito()"
+            id="btn-vaciar"
+            style="display: none"
+          >
+            <span class="btn-icono">🗑️</span> Vaciar Carrito
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2026 NIGHT ZONE | Todos los derechos reservados</p>
+    </footer>
+
+    <script src="carrito.js"></script>
+    <!-- Modal de pago -->
+    <div id="modal-pago" class="modal hidden">
+      <div class="modal-contenido">
+        <span class="modal-cerrar" onclick="cerrarModalPago()">&times;</span>
+        <h2>Completar Pedido</h2>
+        <form id="form-pago" onsubmit="procesarPago(event)">
+          <h3>Datos Personales</h3>
+          <input
+            type="text"
+            name="nombre"
+            placeholder="Nombre completo"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Correo electrónico"
+            required
+          />
+          <input type="tel" name="telefono" placeholder="Teléfono" required />
+          <textarea
+            name="direccion"
+            rows="2"
+            placeholder="Dirección (opcional)"
+          ></textarea>
+
+          <h3>Método de Pago</h3>
+          <div class="metodos-pago">
+            <label class="metodo-pago">
+              <input type="radio" name="metodo-pago" value="yape" required />
+              <span class="metodo-icono"
+                ><img
+                  src="imagenes/pagos/yape.png"
+                  alt="Yape"
+                  onerror="this.style.display = 'none'"
+                />
+                Yape</span
+              >
+            </label>
+            <label class="metodo-pago">
+              <input type="radio" name="metodo-pago" value="plin" required />
+              <span class="metodo-icono"
+                ><img
+                  src="imagenes/pagos/plin.png"
+                  alt="Plin"
+                  onerror="this.style.display = 'none'"
+                />
+                Plin</span
+              >
+            </label>
+            <label class="metodo-pago">
+              <input type="radio" name="metodo-pago" value="tarjeta" required />
+              <span class="metodo-icono">💳 Tarjeta</span>
+            </label>
+            <label class="metodo-pago">
+              <input
+                type="radio"
+                name="metodo-pago"
+                value="efectivo"
+                required
+              />
+              <span class="metodo-icono">💵 Efectivo</span>
+            </label>
+            <label class="metodo-pago">
+              <input
+                type="radio"
+                name="metodo-pago"
+                value="transferencia"
+                required
+              />
+              <span class="metodo-icono">🏦 Transferencia</span>
+            </label>
+            <label class="metodo-pago lemon-card">
+              <input type="radio" name="metodo-pago" value="lemon" required />
+              <span class="metodo-icono"
+                >🍋 Lemon 🎉
+                <span class="dto-marquee"
+                  >10% <span class="dto-word">DESCUENTO</span></span
+                ></span
+              >
+            </label>
+          </div>
+
+          <div id="resumen-pago">
+            <p>Total a pagar: <strong id="modal-total">S/0</strong></p>
+            <div id="dto-info" class="dto-info hidden">
+              <p class="dto-line">
+                ✨ <span class="dto-marquee-sm">10% DESCUENTO</span> Lemon:
+                -<strong id="dto-monto">S/0</strong>
+              </p>
+              <p class="dto-total">
+                Total con descuento: <strong id="modal-total-final">S/0</strong>
+              </p>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-pagar">
+            Pagar S/ <span id="btn-total">0</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function obtenerTotalCarrito() {
+        return obtenerCarrito().reduce(
+          (sum, item) => sum + item.precio * item.cantidad,
+          0,
+        );
+      }
+
+      function actualizarTotalConDescuento() {
+        const total = obtenerTotalCarrito();
+        const metodo = document.querySelector(
+          'input[name="metodo-pago"]:checked',
+        );
+        const dtoInfo = document.getElementById("dto-info");
+
+        if (metodo && metodo.value === "lemon") {
+          const dto = total * 0.1;
+          const final = total - dto;
+          document.getElementById("dto-monto").textContent =
+            "S/" + dto.toFixed(2);
+          document.getElementById("modal-total-final").textContent =
+            "S/" + final.toFixed(2);
+          document.getElementById("btn-total").textContent = final.toFixed(2);
+          dtoInfo.classList.remove("hidden");
+        } else {
+          dtoInfo.classList.add("hidden");
+          document.getElementById("btn-total").textContent = total;
+        }
+      }
+
+      function realizarPedido() {
+        const carrito = obtenerCarrito();
+        if (carrito.length === 0) {
+          alert("El carrito está vacío.");
+          return;
+        }
+        const total = obtenerTotalCarrito();
+        document.getElementById("modal-total").textContent = "S/" + total;
+        document.getElementById("btn-total").textContent = total;
+        document.getElementById("modal-pago").classList.remove("hidden");
+        document.getElementById("dto-info").classList.add("hidden");
+        actualizarTotalConDescuento();
+        document.querySelectorAll('input[name="metodo-pago"]').forEach((r) => {
+          r.addEventListener("change", actualizarTotalConDescuento);
+        });
+      }
+
+      function cerrarModalPago() {
+        document.getElementById("modal-pago").classList.add("hidden");
+      }
+
+      function procesarPago(e) {
+        e.preventDefault();
+        const form = e.target;
+        const datos = {
+          nombre: form.nombre.value,
+          email: form.email.value,
+          telefono: form.telefono.value,
+          direccion: form.direccion.value,
+          metodo: form["metodo-pago"].value,
+        };
+        const total = obtenerTotalCarrito();
+        const metodo = form["metodo-pago"].value;
+        const totalPagar = metodo === "lemon" ? total * 0.9 : total;
+        const resumen = obtenerCarrito()
+          .map(
+            (item) =>
+              item.nombre +
+              " x" +
+              item.cantidad +
+              (item.tipo === "reserva" ? " (Reserva)" : ""),
+          )
+          .join(", ");
+
+        alert(
+          "¡Pedido realizado con éxito!\n\nCliente: " +
+            datos.nombre +
+            "\nMétodo de pago: " +
+            datos.metodo +
+            "\nTotal: S/" +
+            totalPagar.toFixed(2) +
+            "\n\nArtículos:\n" +
+            resumen +
+            "\n\nTe contactaremos para coordinar la entrega.",
+        );
+
+        vaciarCarrito();
+        cerrarModalPago();
+        form.reset();
+      }
+
+      function mostrarOcultarBotones() {
+        const carrito = obtenerCarrito();
+        document.getElementById("btn-pedido").style.display =
+          carrito.length > 0 ? "inline-block" : "none";
+        document.getElementById("btn-vaciar").style.display =
+          carrito.length > 0 ? "inline-block" : "none";
+      }
+
+      const renderOriginal = renderizarCarrito;
+      renderizarCarrito = function () {
+        if (renderOriginal) renderOriginal();
+        mostrarOcultarBotones();
+      };
+
+      document.addEventListener("DOMContentLoaded", function () {
+        renderizarCarrito();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Night Zone</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="icon" type="image/png" href="imagenes.png" />
+    <style>
+      body {
+        background: url("imagenes/galeria/omnia_009.jpg") center/cover fixed
+          no-repeat;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 12, 41, 0.85);
+        z-index: 0;
+      }
+      body > * {
+        position: relative;
+        z-index: 1;
+      }
+      .error-404 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 60vh;
+        text-align: center;
+        padding: 40px 20px;
+      }
+      .error-404 h1 {
+        font-size: 120px;
+        margin: 0;
+        background: linear-gradient(135deg, #ff00c7, #b200ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+      }
+      .error-404 h2 {
+        font-size: 28px;
+        color: #fff;
+        margin: 10px 0 20px;
+      }
+      .error-404 p {
+        color: #aaa;
+        font-size: 16px;
+        max-width: 500px;
+        margin-bottom: 30px;
+      }
+      .error-404 .boton {
+        display: inline-block;
+        padding: 14px 40px;
+        border-radius: 25px;
+        background: linear-gradient(135deg, #ff00c7, #b200ff);
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+      .error-404 .boton:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(255, 0, 199, 0.4);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tabs">
+      <a href="index.html" class="tab-btn">Inicio</a>
+      <a href="eventos.html" class="tab-btn">Eventos</a>
+      <a href="entradas.html" class="tab-btn">Entradas</a>
+      <a href="reservas.html" class="tab-btn">Reservas</a>
+      <a href="bebidas.html" class="tab-btn">Bebidas</a>
+      <a href="carrito.html" class="tab-btn"
+        >Carrito <span class="cart-count">0</span></a
+      >
+      <a href="transporte.html" class="tab-btn">Transporte</a>
+      <a href="galeria.html" class="tab-btn">Momentos</a>
+    </div>
+
+    <div class="tabs secundarias">
+      <a href="ubicacion.html" class="tab-btn secundario">Ubicación</a>
+      <a href="clientes.html" class="tab-btn secundario">Clientes</a>
+      <a href="ventas.html" class="tab-btn secundario">Ventas</a>
+    </div>
+
+    <div class="contenido">
+      <div class="error-404">
+        <img
+          src="imagenes/NIGHT ZONE LOGO.jpg"
+          alt="Night Zone Logo"
+          class="logo-hero"
+          style="max-width: 250px"
+        />
+        <h1>404</h1>
+        <h2>Página no encontrada</h2>
+        <p>
+          La página que buscas no existe o fue movida. Vuelve al inicio para
+          seguir explorando.
+        </p>
+        <a href="index.html" class="boton">Volver al inicio</a>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2026 NIGHT ZONE | Todos los derechos reservados</p>
+    </footer>
+
+    <script src="carrito.js"></script>
+  </body>
+</html>

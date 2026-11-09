@@ -1,0 +1,2182 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eventos - Night Zone</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="icon" type="image/png" href="imagenes.png" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #0a0a1a;
+        color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow-x: hidden;
+      }
+
+      /* ── HERO ── */
+      .eventos-hero {
+        position: relative;
+        min-height: 85vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 140px 20px 80px;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          #0a0a1a 0%,
+          #1a0a2e 40%,
+          #0a1a2e 100%
+        );
+      }
+      .eventos-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at 20% 50%,
+            rgba(255, 0, 255, 0.12) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 80% 50%,
+            rgba(0, 229, 255, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 50% 0%,
+            rgba(255, 215, 0, 0.06) 0%,
+            transparent 40%
+          );
+        z-index: 1;
+        animation: heroPulse 6s ease-in-out infinite alternate;
+      }
+      @keyframes heroPulse {
+        0% {
+          opacity: 0.6;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .particles {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        overflow: hidden;
+      }
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #ff00ff;
+        border-radius: 50%;
+        opacity: 0;
+        animation: particleFloat 8s infinite;
+        box-shadow:
+          0 0 6px #ff00ff,
+          0 0 12px #ff00ff;
+      }
+      .particle:nth-child(1) {
+        left: 10%;
+        animation-delay: 0s;
+        animation-duration: 7s;
+        background: #00e5ff;
+        box-shadow: 0 0 6px #00e5ff;
+      }
+      .particle:nth-child(2) {
+        left: 25%;
+        animation-delay: 1.2s;
+        animation-duration: 9s;
+        width: 3px;
+        height: 3px;
+      }
+      .particle:nth-child(3) {
+        left: 40%;
+        animation-delay: 2.5s;
+        animation-duration: 6s;
+        background: #ffd700;
+        box-shadow: 0 0 6px #ffd700;
+      }
+      .particle:nth-child(4) {
+        left: 55%;
+        animation-delay: 0.8s;
+        animation-duration: 8s;
+        width: 5px;
+        height: 5px;
+      }
+      .particle:nth-child(5) {
+        left: 70%;
+        animation-delay: 3s;
+        animation-duration: 7s;
+        background: #00e5ff;
+        box-shadow: 0 0 6px #00e5ff;
+      }
+      .particle:nth-child(6) {
+        left: 85%;
+        animation-delay: 2s;
+        animation-duration: 9s;
+        width: 3px;
+        height: 3px;
+      }
+      .particle:nth-child(7) {
+        left: 50%;
+        animation-delay: 4s;
+        animation-duration: 6s;
+        background: #ffd700;
+        box-shadow: 0 0 6px #ffd700;
+      }
+      .particle:nth-child(8) {
+        left: 15%;
+        animation-delay: 3.5s;
+        animation-duration: 8s;
+        width: 5px;
+        height: 5px;
+      }
+      .particle:nth-child(9) {
+        left: 65%;
+        animation-delay: 1.5s;
+        animation-duration: 7s;
+      }
+      .particle:nth-child(10) {
+        left: 35%;
+        animation-delay: 4.5s;
+        animation-duration: 9s;
+        width: 3px;
+        height: 3px;
+        background: #00e5ff;
+        box-shadow: 0 0 6px #00e5ff;
+      }
+      .particle:nth-child(11) {
+        left: 90%;
+        animation-delay: 0.5s;
+        animation-duration: 8s;
+        background: #ffd700;
+        box-shadow: 0 0 6px #ffd700;
+      }
+      .particle:nth-child(12) {
+        left: 5%;
+        animation-delay: 2.8s;
+        animation-duration: 7s;
+        width: 5px;
+        height: 5px;
+      }
+      @keyframes particleFloat {
+        0% {
+          transform: translateY(100vh) scale(0);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-10vh) scale(1);
+          opacity: 0;
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 3;
+        max-width: 900px;
+      }
+      .hero-badge {
+        display: inline-block;
+        padding: 8px 24px;
+        border: 1px solid rgba(255, 0, 255, 0.4);
+        border-radius: 50px;
+        font-size: 13px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #ff00ff;
+        margin-bottom: 24px;
+        backdrop-filter: blur(10px);
+        background: rgba(255, 0, 255, 0.08);
+      }
+      .hero-title {
+        font-size: clamp(48px, 8vw, 100px);
+        font-weight: 900;
+        line-height: 1;
+        margin-bottom: 16px;
+        background: linear-gradient(
+          135deg,
+          #fff 0%,
+          #ff00ff 40%,
+          #00e5ff 70%,
+          #ffd700 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: heroTitle 4s ease-in-out infinite alternate;
+      }
+      @keyframes heroTitle {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+      .hero-sub {
+        font-size: clamp(16px, 2.2vw, 22px);
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 32px;
+        line-height: 1.6;
+      }
+      .hero-cta-group {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .hero-btn {
+        padding: 16px 40px;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.4s;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .hero-btn-primary {
+        background: linear-gradient(135deg, #ff00ff, #b300b3);
+        color: #fff;
+        border: none;
+        box-shadow: 0 4px 30px rgba(255, 0, 255, 0.3);
+      }
+      .hero-btn-primary:hover {
+        transform: translateY(-4px) scale(1.03);
+        box-shadow: 0 8px 50px rgba(255, 0, 255, 0.5);
+      }
+      .hero-btn-secondary {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+      }
+      .hero-btn-secondary:hover {
+        border-color: #00e5ff;
+        background: rgba(0, 229, 255, 0.1);
+        transform: translateY(-4px);
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: 40px;
+        justify-content: center;
+        margin-top: 50px;
+        flex-wrap: wrap;
+      }
+      .hero-stat {
+        text-align: center;
+      }
+      .hero-stat-num {
+        font-size: 36px;
+        font-weight: 900;
+        background: linear-gradient(135deg, #ff00ff, #00e5ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .hero-stat-label {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-top: 4px;
+      }
+
+      /* ── SECTION TITLES ── */
+      .section-header {
+        max-width: 1200px;
+        margin: 0 auto 50px;
+        padding: 0 20px;
+        text-align: center;
+      }
+      .section-tag {
+        display: inline-block;
+        font-size: 12px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: #ff00ff;
+        margin-bottom: 12px;
+      }
+      .section-title {
+        font-size: clamp(32px, 5vw, 56px);
+        font-weight: 900;
+        background: linear-gradient(135deg, #fff, #ff00ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .section-desc {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 17px;
+        margin-top: 12px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* ── EVENTOS SECTION ── */
+      .eventos-section {
+        padding: 80px 20px;
+        position: relative;
+      }
+      .eventos-section:nth-child(even) {
+        background: rgba(255, 0, 255, 0.02);
+      }
+      .eventos-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        max-width: 600px;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 0, 255, 0.3),
+          transparent
+        );
+      }
+
+      /* ── FEATURED ARTIST ── */
+      .featured-artist {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-radius: 32px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 215, 0, 0.15);
+        box-shadow: 0 0 80px rgba(255, 215, 0, 0.05);
+        position: relative;
+      }
+      .featured-artist::before {
+        content: "🔥 EVENTO PRINCIPAL";
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 5;
+        background: linear-gradient(135deg, #ffd700, #ff8c00);
+        color: #000;
+        font-size: 12px;
+        font-weight: 900;
+        padding: 8px 20px;
+        border-radius: 50px;
+        letter-spacing: 2px;
+        box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+      }
+      .featured-img {
+        height: 100%;
+        min-height: 450px;
+        position: relative;
+        overflow: hidden;
+      }
+      .featured-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.8s;
+      }
+      .featured-artist:hover .featured-img img {
+        transform: scale(1.05);
+      }
+      .featured-img::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          transparent 50%,
+          rgba(10, 10, 26, 0.9) 100%
+        );
+      }
+      .featured-info {
+        padding: 50px 45px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+      }
+      .featured-label {
+        font-size: 12px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #ffd700;
+        margin-bottom: 8px;
+      }
+      .featured-name {
+        font-size: clamp(32px, 4vw, 48px);
+        font-weight: 900;
+        margin-bottom: 12px;
+        line-height: 1.1;
+      }
+      .featured-name span {
+        background: linear-gradient(135deg, #ffd700, #ff8c00);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .featured-desc {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+      .featured-meta {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+      }
+      .featured-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .featured-meta-item .icon {
+        font-size: 18px;
+      }
+      .featured-price {
+        font-size: 42px;
+        font-weight: 900;
+        color: #ffd700;
+        margin-bottom: 20px;
+      }
+      .featured-price small {
+        font-size: 16px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .featured-btn {
+        align-self: flex-start;
+        padding: 16px 44px;
+        border: none;
+        border-radius: 50px;
+        background: linear-gradient(135deg, #ffd700, #ff8c00);
+        color: #000;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.4s;
+        box-shadow: 0 4px 30px rgba(255, 215, 0, 0.3);
+      }
+      .featured-btn:hover {
+        transform: translateY(-4px) scale(1.03);
+        box-shadow: 0 8px 50px rgba(255, 215, 0, 0.5);
+      }
+
+      /* ── CARDS GRID ── */
+      .events-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 28px;
+        padding: 0 20px;
+      }
+
+      .event-card {
+        position: relative;
+        border-radius: 24px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        transform-style: preserve-3d;
+        perspective: 1000px;
+        cursor: pointer;
+      }
+      .event-card:hover {
+        transform: translateY(-12px) rotateX(2deg);
+        border-color: rgba(255, 0, 255, 0.3);
+        box-shadow: 0 30px 80px rgba(255, 0, 255, 0.15);
+      }
+      .event-card-inner {
+        position: relative;
+      }
+      .event-card-img {
+        height: 220px;
+        overflow: hidden;
+        position: relative;
+      }
+      .event-card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.7s;
+      }
+      .event-card:hover .event-card-img img {
+        transform: scale(1.1);
+      }
+      .event-card-img::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60%;
+        background: linear-gradient(transparent, rgba(10, 10, 26, 0.95));
+      }
+      .event-card-tag {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        z-index: 2;
+        padding: 6px 16px;
+        border-radius: 50px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+      .event-card-tag.pop {
+        background: #1abc9c;
+        color: #fff;
+      }
+      .event-card-tag.electronica {
+        background: #9b59b6;
+        color: #fff;
+      }
+      .event-card-tag.reggaeton {
+        background: #e67e22;
+        color: #fff;
+      }
+      .event-card-tag.hiphop {
+        background: #e74c3c;
+        color: #fff;
+      }
+      .event-card-tag.latino {
+        background: #f1c40f;
+        color: #000;
+      }
+      .event-card-tag.rock {
+        background: #2c3e50;
+        color: #fff;
+      }
+      .event-card-tag.trap {
+        background: #8e44ad;
+        color: #fff;
+      }
+
+      .event-card-info {
+        padding: 22px 24px 24px;
+        position: relative;
+        z-index: 1;
+      }
+      .event-card-name {
+        font-size: 24px;
+        font-weight: 800;
+        margin-bottom: 6px;
+        transition: 0.3s;
+      }
+      .event-card:hover .event-card-name {
+        background: linear-gradient(135deg, #ff00ff, #00e5ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .event-card-desc {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.5;
+        margin-bottom: 14px;
+      }
+      .event-card-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .event-card-date {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .event-card-date strong {
+        color: #ff00ff;
+      }
+      .event-card-price {
+        font-size: 24px;
+        font-weight: 900;
+        color: #00e5ff;
+      }
+      .event-card-btn {
+        margin-top: 16px;
+        width: 100%;
+        padding: 13px;
+        border: none;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .event-card-btn:hover {
+        background: linear-gradient(135deg, #ff00ff, #b300b3);
+        box-shadow: 0 4px 25px rgba(255, 0, 255, 0.3);
+      }
+
+      /* ── COMING SOON badge ── */
+      .coming-badge {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: 2;
+        padding: 6px 14px;
+        border-radius: 50px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        background: rgba(255, 0, 255, 0.15);
+        border: 1px solid rgba(255, 0, 255, 0.3);
+        color: #ff00ff;
+        backdrop-filter: blur(10px);
+      }
+
+      /* ── SCROLL ANIMATIONS ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+      .reveal-delay-5 {
+        transition-delay: 0.5s;
+      }
+
+      /* ── VIP SECTION ── */
+      .vip-modern {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .vip-grid-modern {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+      }
+      .vip-card-modern {
+        position: relative;
+        border-radius: 28px;
+        padding: 44px 32px 36px;
+        text-align: center;
+        transition: 0.5s;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        display: flex;
+        flex-direction: column;
+      }
+      .vip-card-modern:hover {
+        transform: translateY(-12px);
+      }
+      .vip-card-modern::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(
+          from 0deg,
+          transparent,
+          var(--vip-color),
+          transparent 30%
+        );
+        opacity: 0;
+        transition: 0.6s;
+        animation: vipBorder 4s linear infinite;
+      }
+      .vip-card-modern:hover::before {
+        opacity: 0.15;
+      }
+      @keyframes vipBorder {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .vip-card-modern-inner {
+        position: relative;
+        z-index: 1;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .vip-card-modern .vip-badge-modern {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 6px 16px;
+        border-radius: 50px;
+        color: #000;
+      }
+      .vip-card-diamante {
+        --vip-color: #00bfff;
+      }
+      .vip-card-diamante .vip-badge-modern {
+        background: linear-gradient(135deg, #00bfff, #0066ff);
+        color: #fff;
+      }
+      .vip-card-platino {
+        --vip-color: #c0c0c0;
+      }
+      .vip-card-platino .vip-badge-modern {
+        background: linear-gradient(135deg, #c0c0c0, #808080);
+        color: #000;
+      }
+      .vip-card-oro {
+        --vip-color: #ffd700;
+      }
+      .vip-card-oro .vip-badge-modern {
+        background: linear-gradient(135deg, #ffd700, #ff8c00);
+        color: #000;
+      }
+
+      .vip-card-modern .vip-icono-modern {
+        font-size: 60px;
+        margin-bottom: 16px;
+        filter: drop-shadow(0 0 20px var(--vip-color));
+      }
+      .vip-card-modern h3 {
+        font-size: 26px;
+        font-weight: 800;
+        margin-bottom: 20px;
+        color: var(--vip-color);
+      }
+      .vip-card-modern ul {
+        list-style: none;
+        text-align: left;
+        margin-bottom: 24px;
+        flex: 1;
+      }
+      .vip-card-modern ul li {
+        padding: 10px 0;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .vip-card-modern ul li::before {
+        content: "✦";
+        color: var(--vip-color);
+        font-size: 12px;
+      }
+      .vip-card-modern .vip-price-modern {
+        font-size: 40px;
+        font-weight: 900;
+        color: var(--vip-color);
+        margin-bottom: 20px;
+        text-shadow: 0 0 30px rgba(var(--vip-color), 0.2);
+      }
+      .vip-card-modern .vip-btn-modern {
+        padding: 15px 32px;
+        border: none;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.4s;
+        color: #fff;
+        background: linear-gradient(
+          135deg,
+          var(--vip-color),
+          color-mix(in srgb, var(--vip-color) 60%, #000)
+        );
+        box-shadow: 0 4px 25px rgba(var(--vip-color), 0.3);
+      }
+      .vip-card-modern .vip-btn-modern:hover {
+        transform: translateY(-4px) scale(1.03);
+        box-shadow: 0 8px 40px rgba(var(--vip-color), 0.5);
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 768px) {
+        .featured-artist {
+          grid-template-columns: 1fr;
+        }
+        .featured-img {
+          min-height: 280px;
+        }
+        .featured-img::after {
+          background: linear-gradient(transparent, rgba(10, 10, 26, 0.9));
+        }
+        .featured-info {
+          padding: 30px 24px;
+        }
+        .events-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-stats {
+          gap: 24px;
+        }
+        .hero-stat-num {
+          font-size: 28px;
+        }
+        .eventos-hero {
+          min-height: 70vh;
+          padding: 120px 20px 60px;
+        }
+      }
+      @media (max-width: 480px) {
+        .events-grid {
+          grid-template-columns: 1fr;
+        }
+        .vip-grid-modern {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ── PRESERVED STYLES FOR MODALS ── */
+      #form-vip input,
+      #form-entrada input,
+      #form-entrada textarea {
+        width: 100%;
+        padding: 14px 18px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        outline: none;
+        transition: 0.3s;
+        box-sizing: border-box;
+      }
+      #form-vip input:focus,
+      #form-entrada input:focus,
+      #form-entrada textarea:focus {
+        background: rgba(255, 255, 255, 0.18);
+        box-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
+      }
+
+      .contenido {
+        padding: 130px 40px 60px;
+        text-align: center;
+        min-height: 50vh;
+      }
+      .contenido h2 {
+        font-size: 40px;
+        margin-bottom: 20px;
+        color: #00e5ff;
+      }
+      .contenido > p {
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: #ddd;
+      }
+      .volver {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #00e5ff;
+        text-decoration: none;
+        font-size: 16px;
+        transition: 0.3s;
+      }
+      .volver:hover {
+        color: #ff00ff;
+      }
+      footer {
+        background: black;
+        text-align: center;
+        padding: 25px;
+        margin-top: 40px;
+      }
+      footer p {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+      }
+
+      .eventos-section .volver {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        z-index: 10;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tabs">
+      <a href="index.html" class="tab-btn">Inicio</a>
+      <a href="eventos.html" class="tab-btn activo">Eventos</a>
+      <a href="entradas.html" class="tab-btn">Entradas</a>
+      <a href="reservas.html" class="tab-btn">Reservas</a>
+      <a href="bebidas.html" class="tab-btn">Bebidas</a>
+      <a href="carrito.html" class="tab-btn"
+        >Carrito <span class="cart-count">0</span></a
+      >
+      <a href="transporte.html" class="tab-btn">Transporte</a>
+      <a href="galeria.html" class="tab-btn">Momentos</a>
+    </div>
+
+    <div class="tabs secundarias">
+      <a href="ubicacion.html" class="tab-btn secundario">Ubicación</a>
+      <a href="clientes.html" class="tab-btn secundario">Clientes</a>
+      <a href="ventas.html" class="tab-btn secundario">Ventas</a>
+    </div>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="eventos-hero" id="hero">
+      <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge">Temporada 2026</div>
+        <img src="imagenes/NIGHT ZONE LOGO.jpg" alt="Night Zone Logo" class="logo-hero-sm"><h1 class="hero-title">Próximos Eventos</h1>
+        <p class="hero-sub">
+          Artistas y DJs que se presentarán en Night Zone.<br />Vive la
+          experiencia nocturna más exclusiva de la ciudad.
+        </p>
+        <div class="hero-cta-group">
+          <a href="#eventos-esta-semana" class="hero-btn hero-btn-primary"
+            >🎵 Ver cartelera</a
+          >
+          <a href="#vip" class="hero-btn hero-btn-secondary"
+            >👑 Experiencia VIP</a
+          >
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">10+</div>
+            <div class="hero-stat-label">Artistas</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">6</div>
+            <div class="hero-stat-label">Eventos esta semana</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">S/150</div>
+            <div class="hero-stat-label">Desde</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ ESTA SEMANA ═══ -->
+    <section class="eventos-section" id="eventos-esta-semana">
+      <div class="section-header reveal">
+        <div class="section-tag">Live Now</div>
+        <h2 class="section-title">Esta Semana</h2>
+        <p class="section-desc">
+          Los eventos que no te puedes perder esta semana en Night Zone.
+        </p>
+      </div>
+
+      <!-- Featured: Rihanna -->
+      <div class="featured-artist reveal" style="margin: 0 auto 50px">
+        <div class="featured-img">
+          <img
+            src="imagenes/galeria/omnia-240-scaled.jpg"
+            alt="Rihanna"
+            loading="lazy"
+          />
+        </div>
+        <div class="featured-info">
+          <div class="featured-label">Evento Principal</div>
+          <div class="featured-name"><span>Rihanna</span></div>
+          <p class="featured-desc">
+            La noche más esperada. Sonidos pop y R&B para disfrutar con amigos
+            en una experiencia inolvidable.
+          </p>
+          <div class="featured-meta">
+            <span class="featured-meta-item"
+              ><span class="icon">📅</span> Viernes 19 Junio 2026 | 11:00
+              PM</span
+            >
+            <span class="featured-meta-item"
+              ><span class="icon">🎵</span> Pop / R&B</span
+            >
+          </div>
+          <div class="featured-price">S/200 <small>/ por entrada</small></div>
+          <button
+            class="featured-btn"
+            onclick="abrirModalEntrada('Rihanna', 200)"
+          >
+            Comprar Entrada →
+          </button>
+        </div>
+      </div>
+
+      <div class="events-grid">
+        <div class="event-card reveal reveal-delay-1">
+          <div class="event-card-inner">
+            <div class="event-card-img">
+              <img
+                src="imagenes/galeria/marshmello.jpg"
+                alt="Marshmello"
+                loading="lazy"
+              />
+              <span class="event-card-tag electronica">Electrónica</span>
+            </div>
+            <div class="event-card-info">
+              <div class="event-card-name">Marshmello</div>
+              <p class="event-card-desc">
+                Noche de electrónica con los mejores beats.
+              </p>
+              <div class="event-card-meta">
+                <span class="event-card-date"
+                  >📅 <strong>Vie 26 Jun</strong> | 11:00 PM</span
+                >
+                <span class="event-card-price">S/175</span>
+              </div>
+              <button
+                class="event-card-btn"
+                onclick="abrirModalEntrada('Marshmello', 175)"
+              >
+                🎟️ Comprar Entrada
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card reveal reveal-delay-2">
+          <div class="event-card-inner">
+            <div class="event-card-img">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/J_Balvin%2C_Noisey_Meets%3B_Oct_2018.jpg/1280px-J_Balvin%2C_Noisey_Meets%3B_Oct_2018.jpg"
+                alt="J Balvin"
+                loading="lazy"
+              />
+              <span class="event-card-tag reggaeton">Reggaetón</span>
+            </div>
+            <div class="event-card-info">
+              <div class="event-card-name">J Balvin</div>
+              <p class="event-card-desc">Reggaetón y perreo toda la noche.</p>
+              <div class="event-card-meta">
+                <span class="event-card-date"
+                  >📅 <strong>Sáb 27 Jun</strong> | 10:30 PM</span
+                >
+                <span class="event-card-price">S/175</span>
+              </div>
+              <button
+                class="event-card-btn"
+                onclick="abrirModalEntrada('J Balvin', 175)"
+              >
+                🎟️ Comprar Entrada
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card reveal reveal-delay-3">
+          <div class="event-card-inner">
+            <div class="event-card-img">
+              <img
+                src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=500&fit=crop"
+                alt="Dua Lipa"
+                loading="lazy"
+              />
+              <span class="event-card-tag pop">Pop</span>
+            </div>
+            <div class="event-card-info">
+              <div class="event-card-name">Dua Lipa</div>
+              <p class="event-card-desc">
+                Pop bailable para empezar el fin de semana.
+              </p>
+              <div class="event-card-meta">
+                <span class="event-card-date"
+                  >📅 <strong>Vie 3 Jul</strong> | 11:30 PM</span
+                >
+                <span class="event-card-price">S/150</span>
+              </div>
+              <button
+                class="event-card-btn"
+                onclick="abrirModalEntrada('Dua Lipa', 150)"
+              >
+                🎟️ Comprar Entrada
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ PRÓXIMAMENTE ═══ -->
+    <section class="eventos-section" id="eventos-proximamente">
+      <div class="section-header reveal">
+        <div class="section-tag">Coming Soon</div>
+        <h2 class="section-title">Próximamente</h2>
+        <p class="section-desc">
+          Lo que se viene en las próximas semanas. Prepárate para la mejor
+          experiencia.
+        </p>
+      </div>
+
+      <div class="events-grid">
+        <div class="event-card reveal reveal-delay-1">
+          <div class="event-card-inner">
+            <div class="event-card-img">
+              <img
+                src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=800&h=500&fit=crop"
+                alt="Travis Scott"
+                loading="lazy"
+              />
+              <span class="event-card-tag hiphop">Hip-Hop</span>
+              <span class="coming-badge">Próximamente</span>
+            </div>
+            <div class="event-card-info">
+              <div class="event-card-name">Travis Scott</div>
+              <p class="event-card-desc">
+                Trap y hip-hop para los amantes del género.
+              </p>
+              <div class="event-card-meta">
+                <span class="event-card-date"
+                  >📅 <strong>Sáb 4 Jul</strong> | 11:00 PM</span
+                >
+                <span class="event-card-price">S/150</span>
+              </div>
+              <button
+                class="event-card-btn"
+                onclick="abrirModalEntrada('Travis Scott', 150)"
+              >
+                🎟️ Comprar Entrada
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card reveal reveal-delay-2">
+          <div class="event-card-inner">
+            <div class="event-card-img">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg/1280px-Bad_Bunny_2019_by_Glenn_Francis_%28cropped%29.jpg"
+                alt="Bad Bunny"
+                loading="lazy"
+              />
+              <span class="event-card-tag latino">Latino</span>
+              <span class="coming-badge">Próximamente</span>
+            </div>
+            <div class="event-card-info">
+              <div class="event-card-name">Bad Bunny</div>
+              <p class="event-card-desc">
+                Perreo y reggaetón hasta el amanecer.
+              </p>
+              <div class="event-card-meta">
+                <span class="event-card-date"
+                  >📅 <strong>Vie 10 Jul</strong> | 10:00 PM</span
+                >
+                <span class="event-card-price">S/175</span>
+              </div>
+              <button
+                class="event-card-btn"
+                onclick="abrirModalEntrada('Bad Bunny', 175)"
+              >
+                🎟️ Comprar Entrada
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card reveal reveal-delay-3">
+          <div class="event-card-inner">
+            <div class="event-card-img">
+              <img
+                src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&h=500&fit=crop"
+                alt="David Guetta"
+                loading="lazy"
+              />
+              <span class="event-card-tag electronica">Electrónica</span>
+              <span class="coming-badge">Próximamente</span>
+            </div>
+            <div class="event-card-info">
+              <div class="event-card-name">David Guetta</div>
+              <p class="event-card-desc">
+                Electrónica y house para bailar sin parar.
+              </p>
+              <div class="event-card-meta">
+                <span class="event-card-date"
+                  >📅 <strong>Sáb 11 Jul</strong> | 11:30 PM</span
+                >
+                <span class="event-card-price">S/175</span>
+              </div>
+              <button
+                class="event-card-btn"
+                onclick="abrirModalEntrada('David Guetta', 175)"
+              >
+                🎟️ Comprar Entrada
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card reveal reveal-delay-4">
+          <div class="event-card-inner">
+            <div class="event-card-img">
+              <img
+                src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&h=500&fit=crop"
+                alt="Rosalía"
+                loading="lazy"
+              />
+              <span class="event-card-tag trap">Trap</span>
+              <span class="coming-badge">Próximamente</span>
+            </div>
+            <div class="event-card-info">
+              <div class="event-card-name">Rosalía</div>
+              <p class="event-card-desc">Flamenco y trap, una fusión única.</p>
+              <div class="event-card-meta">
+                <span class="event-card-date"
+                  >📅 <strong>Vie 17 Jul</strong> | 10:30 PM</span
+                >
+                <span class="event-card-price">S/150</span>
+              </div>
+              <button
+                class="event-card-btn"
+                onclick="abrirModalEntrada('Rosalía', 150)"
+              >
+                🎟️ Comprar Entrada
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card reveal reveal-delay-5">
+          <div class="event-card-inner">
+            <div class="event-card-img">
+              <img
+                src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&h=500&fit=crop"
+                alt="The Weeknd"
+                loading="lazy"
+              />
+              <span class="event-card-tag rock">R&B</span>
+              <span class="coming-badge">Próximamente</span>
+            </div>
+            <div class="event-card-info">
+              <div class="event-card-name">The Weeknd</div>
+              <p class="event-card-desc">R&B y pop para una noche especial.</p>
+              <div class="event-card-meta">
+                <span class="event-card-date"
+                  >📅 <strong>Sáb 18 Jul</strong> | 11:00 PM</span
+                >
+                <span class="event-card-price">S/175</span>
+              </div>
+              <button
+                class="event-card-btn"
+                onclick="abrirModalEntrada('The Weeknd', 175)"
+              >
+                🎟️ Comprar Entrada
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card reveal reveal-delay-5">
+          <div class="event-card-inner">
+            <div class="event-card-img">
+              <img
+                src="https://images.unsplash.com/photo-1524650359799-842906ca1c06?w=800&h=500&fit=crop"
+                alt="Karol G"
+                loading="lazy"
+              />
+              <span class="event-card-tag reggaeton">Reggaetón</span>
+              <span class="coming-badge">Próximamente</span>
+            </div>
+            <div class="event-card-info">
+              <div class="event-card-name">Karol G</div>
+              <p class="event-card-desc">
+                Bichota mode activado toda la noche.
+              </p>
+              <div class="event-card-meta">
+                <span class="event-card-date"
+                  >📅 <strong>Vie 24 Jul</strong> | 10:00 PM</span
+                >
+                <span class="event-card-price">S/150</span>
+              </div>
+              <button
+                class="event-card-btn"
+                onclick="abrirModalEntrada('Karol G', 150)"
+              >
+                🎟️ Comprar Entrada
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ VIP ═══ -->
+    <section class="eventos-section" id="vip">
+      <div class="section-header reveal">
+        <div class="section-tag">Exclusivo</div>
+        <h2 class="section-title">Experiencia VIP</h2>
+        <p class="section-desc">
+          Acceso exclusivo con beneficios premium para los verdaderos fanáticos.
+        </p>
+      </div>
+
+      <div class="vip-modern">
+        <div class="vip-grid-modern">
+          <div class="vip-card-modern vip-card-diamante reveal reveal-delay-1">
+            <div class="vip-card-modern-inner">
+              <span class="vip-badge-modern">Más Exclusivo</span>
+              <div class="vip-icono-modern">💎</div>
+              <h3>VIP Diamante</h3>
+              <ul>
+                <li>Mesa privada con botella premium</li>
+                <li>Acceso backstage con el artista</li>
+                <li>Chofer privado ida y vuelta</li>
+                <li>Fotografía oficial con el artista</li>
+                <li>Entrada prioritaria sin fila</li>
+              </ul>
+              <div class="vip-price-modern">S/2,500</div>
+              <button
+                class="vip-btn-modern"
+                onclick="abrirModalVIP('Diamante', 2500)"
+              >
+                Adquirir Ahora
+              </button>
+            </div>
+          </div>
+
+          <div class="vip-card-modern vip-card-platino reveal reveal-delay-2">
+            <div class="vip-card-modern-inner">
+              <span class="vip-badge-modern">Recomendado</span>
+              <div class="vip-icono-modern">🥇</div>
+              <h3>VIP Platino</h3>
+              <ul>
+                <li>Zona preferencial frente al escenario</li>
+                <li>Barra libre de tragos premium</li>
+                <li>Estacionamiento VIP incluido</li>
+                <li>Merchandising oficial del evento</li>
+                <li>Acceso a after-party exclusiva</li>
+              </ul>
+              <div class="vip-price-modern">S/1,800</div>
+              <button
+                class="vip-btn-modern"
+                onclick="abrirModalVIP('Platino', 1800)"
+              >
+                Adquirir Ahora
+              </button>
+            </div>
+          </div>
+
+          <div class="vip-card-modern vip-card-oro reveal reveal-delay-3">
+            <div class="vip-card-modern-inner">
+              <span class="vip-badge-modern">Económico</span>
+              <div class="vip-icono-modern">⭐</div>
+              <h3>VIP Oro</h3>
+              <ul>
+                <li>Zona VIP con vista privilegiada</li>
+                <li>2 tragos de cortesía</li>
+                <li>Entrada rápida sin cola</li>
+                <li>Guardarropa gratuito</li>
+                <li>1 foto en photobooth VIP</li>
+              </ul>
+              <div class="vip-price-modern">S/950</div>
+              <button
+                class="vip-btn-modern"
+                onclick="abrirModalVIP('Oro', 950)"
+              >
+                Adquirir Ahora
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ MODALS ═══ (preserved original) ═══ -->
+    <div id="modal-vip" class="modal hidden">
+      <div class="modal-contenido">
+        <span class="modal-cerrar" onclick="cerrarModalVIP()">&times;</span>
+        <h2 id="modal-vip-titulo"></h2>
+        <form id="form-vip" onsubmit="procesarVIP(event)">
+          <h3>Datos Personales</h3>
+          <input
+            type="text"
+            name="vip-nombre"
+            id="vip-nombre"
+            placeholder="Nombre completo"
+            required
+          />
+          <input
+            type="email"
+            name="vip-email"
+            id="vip-email"
+            placeholder="Correo electrónico"
+            required
+          />
+          <input
+            type="tel"
+            name="vip-telefono"
+            id="vip-telefono"
+            placeholder="Teléfono"
+            required
+          />
+
+          <h3>Método de Pago</h3>
+          <div class="metodos-pago">
+            <label class="metodo-pago">
+              <input
+                type="radio"
+                name="metodo-pago-vip"
+                value="yape"
+                required
+              />
+              <span class="metodo-icono"
+                ><img
+                  src="imagenes/pagos/yape.png"
+                  alt="Yape"
+                  onerror="this.style.display = 'none'"
+                />
+                Yape</span
+              >
+            </label>
+            <label class="metodo-pago">
+              <input
+                type="radio"
+                name="metodo-pago-vip"
+                value="plin"
+                required
+              />
+              <span class="metodo-icono"
+                ><img
+                  src="imagenes/pagos/plin.png"
+                  alt="Plin"
+                  onerror="this.style.display = 'none'"
+                />
+                Plin</span
+              >
+            </label>
+            <label class="metodo-pago">
+              <input
+                type="radio"
+                name="metodo-pago-vip"
+                value="tarjeta"
+                required
+              />
+              <span class="metodo-icono">💳 Tarjeta</span>
+            </label>
+            <label class="metodo-pago">
+              <input
+                type="radio"
+                name="metodo-pago-vip"
+                value="efectivo"
+                required
+              />
+              <span class="metodo-icono">💵 Efectivo</span>
+            </label>
+            <label class="metodo-pago">
+              <input
+                type="radio"
+                name="metodo-pago-vip"
+                value="transferencia"
+                required
+              />
+              <span class="metodo-icono">🏦 Transferencia</span>
+            </label>
+            <label class="metodo-pago lemon-card">
+              <input
+                type="radio"
+                name="metodo-pago-vip"
+                value="lemon"
+                required
+              />
+              <span class="metodo-icono"
+                >🍋 Lemon 🎉
+                <span class="dto-marquee"
+                  >10% <span class="dto-word">DESCUENTO</span></span
+                ></span
+              >
+            </label>
+          </div>
+
+          <div id="extra-tarjeta-vip" class="extra-pago hidden">
+            <h3>Datos de la Tarjeta</h3>
+            <label>Número de tarjeta</label>
+            <input
+              type="text"
+              name="tarjeta-numero"
+              placeholder="1234 5678 9012 3456"
+              maxlength="19"
+              oninput="
+                this.value = this.value
+                  .replace(/\D/g, '')
+                  .replace(/(.{4})/g, '$1 ')
+                  .trim()
+              "
+            />
+            <div class="tarjeta-fila">
+              <div>
+                <label>Vencimiento</label>
+                <input
+                  type="text"
+                  name="tarjeta-vto"
+                  placeholder="MM/AA"
+                  maxlength="5"
+                  oninput="
+                    this.value = this.value
+                      .replace(/\D/g, '')
+                      .replace(/^(\d{2})/, '$1/')
+                      .trim()
+                  "
+                />
+              </div>
+              <div>
+                <label>CVV</label>
+                <input
+                  type="text"
+                  name="tarjeta-cvv"
+                  placeholder="123"
+                  maxlength="4"
+                  oninput="this.value = this.value.replace(/\D/g, '')"
+                />
+              </div>
+            </div>
+            <label>Titular</label>
+            <input
+              type="text"
+              name="tarjeta-titular"
+              placeholder="Nombre del titular"
+            />
+          </div>
+
+          <div id="extra-transferencia-vip" class="extra-pago hidden">
+            <h3>Datos de Transferencia</h3>
+            <label>Cuenta bancaria / CCI</label>
+            <input
+              type="text"
+              name="cuenta-numero"
+              placeholder="Ingrese su número de cuenta o CCI"
+            />
+          </div>
+
+          <div id="extra-yape-vip" class="extra-pago hidden">
+            <h3>Paga con Yape</h3>
+            <div class="qr-container">
+              <img src="imagenes/pagos/yape-qr.png" alt="Yape QR" />
+              <p>Escanea este código QR con tu app Yape para pagar</p>
+            </div>
+          </div>
+
+          <div id="extra-plin-vip" class="extra-pago hidden">
+            <h3>Paga con Plin</h3>
+            <div class="qr-container">
+              <img src="imagenes/pagos/plin-qr.png" alt="Plin QR" />
+              <p>Escanea este código QR con tu app Plin para pagar</p>
+            </div>
+          </div>
+
+          <div id="extra-efectivo-vip" class="extra-pago hidden">
+            <h3>Pago en Efectivo</h3>
+            <div class="efectivo-container">
+              <p>Acérquese a la caja con este código:</p>
+              <div class="codigo-efectivo" id="codigo-efectivo-vip">
+                NZ-XXXXX
+              </div>
+            </div>
+          </div>
+
+          <div id="resumen-pago-vip">
+            <p>Total a pagar: <strong id="vip-total">S/0</strong></p>
+            <div id="dto-info-vip" class="dto-info hidden">
+              <p class="dto-line">
+                ✨ <span class="dto-marquee-sm">10% DESCUENTO</span> Lemon:
+                -<strong id="dto-monto-vip">S/0</strong>
+              </p>
+              <p class="dto-total">
+                Total con descuento: <strong id="vip-total-final">S/0</strong>
+              </p>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-pagar">
+            ✅ Pagar S/ <span id="btn-vip-total">0</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div id="modal-entrada" class="modal hidden">
+      <div class="modal-contenido">
+        <span class="modal-cerrar" onclick="cerrarModalEntrada()">&times;</span>
+        <h2 id="modal-entrada-titulo"></h2>
+        <form id="form-entrada" onsubmit="procesarEntrada(event)">
+          <h3>Datos de la Entrada</h3>
+          <input
+            type="number"
+            name="entrada-cantidad"
+            id="entrada-cantidad"
+            min="1"
+            max="10"
+            value="1"
+            required
+            oninput="actualizarTotalEntrada()"
+          />
+
+          <h3>Datos Personales</h3>
+          <input
+            type="text"
+            name="entrada-nombre"
+            id="entrada-nombre"
+            placeholder="Nombre completo"
+            required
+          />
+          <input
+            type="email"
+            name="entrada-email"
+            id="entrada-email"
+            placeholder="Correo electrónico"
+            required
+          />
+          <input
+            type="tel"
+            name="entrada-telefono"
+            id="entrada-telefono"
+            placeholder="Teléfono"
+            required
+          />
+          <textarea
+            name="entrada-direccion"
+            id="entrada-direccion"
+            rows="2"
+            placeholder="Dirección (opcional)"
+          ></textarea>
+
+          <h3>Método de Pago</h3>
+          <div class="metodos-pago">
+            <label class="metodo-pago">
+              <input
+                type="radio"
+                name="metodo-pago-entrada"
+                value="yape"
+                required
+              />
+              <span class="metodo-icono"
+                ><img
+                  src="imagenes/pagos/yape.png"
+                  alt="Yape"
+                  onerror="this.style.display = 'none'"
+                />
+                Yape</span
+              >
+            </label>
+            <label class="metodo-pago">
+              <input
+                type="radio"
+                name="metodo-pago-entrada"
+                value="plin"
+                required
+              />
+              <span class="metodo-icono"
+                ><img
+                  src="imagenes/pagos/plin.png"
+                  alt="Plin"
+                  onerror="this.style.display = 'none'"
+                />
+                Plin</span
+              >
+            </label>
+            <label class="metodo-pago">
+              <input
+                type="radio"
+                name="metodo-pago-entrada"
+                value="tarjeta"
+                required
+              />
+              <span class="metodo-icono">💳 Tarjeta</span>
+            </label>
+            <label class="metodo-pago">
+              <input
+                type="radio"
+                name="metodo-pago-entrada"
+                value="efectivo"
+                required
+              />
+              <span class="metodo-icono">💵 Efectivo</span>
+            </label>
+            <label class="metodo-pago">
+              <input
+                type="radio"
+                name="metodo-pago-entrada"
+                value="transferencia"
+                required
+              />
+              <span class="metodo-icono">🏦 Transferencia</span>
+            </label>
+            <label class="metodo-pago lemon-card">
+              <input
+                type="radio"
+                name="metodo-pago-entrada"
+                value="lemon"
+                required
+              />
+              <span class="metodo-icono"
+                >🍋 Lemon 🎉
+                <span class="dto-marquee"
+                  >10% <span class="dto-word">DESCUENTO</span></span
+                ></span
+              >
+            </label>
+          </div>
+
+          <div id="extra-tarjeta-entrada" class="extra-pago hidden">
+            <h3>Datos de la Tarjeta</h3>
+            <label>Número de tarjeta</label>
+            <input
+              type="text"
+              name="tarjeta-numero"
+              placeholder="1234 5678 9012 3456"
+              maxlength="19"
+              oninput="
+                this.value = this.value
+                  .replace(/\D/g, '')
+                  .replace(/(.{4})/g, '$1 ')
+                  .trim()
+              "
+            />
+            <div class="tarjeta-fila">
+              <div>
+                <label>Vencimiento</label>
+                <input
+                  type="text"
+                  name="tarjeta-vto"
+                  placeholder="MM/AA"
+                  maxlength="5"
+                  oninput="
+                    this.value = this.value
+                      .replace(/\D/g, '')
+                      .replace(/^(\d{2})/, '$1/')
+                      .trim()
+                  "
+                />
+              </div>
+              <div>
+                <label>CVV</label>
+                <input
+                  type="text"
+                  name="tarjeta-cvv"
+                  placeholder="123"
+                  maxlength="4"
+                  oninput="this.value = this.value.replace(/\D/g, '')"
+                />
+              </div>
+            </div>
+            <label>Titular</label>
+            <input
+              type="text"
+              name="tarjeta-titular"
+              placeholder="Nombre del titular"
+            />
+          </div>
+
+          <div id="extra-transferencia-entrada" class="extra-pago hidden">
+            <h3>Datos de Transferencia</h3>
+            <label>Cuenta bancaria / CCI</label>
+            <input
+              type="text"
+              name="cuenta-numero"
+              placeholder="Ingrese su número de cuenta o CCI"
+            />
+          </div>
+
+          <div id="extra-yape-entrada" class="extra-pago hidden">
+            <h3>Paga con Yape</h3>
+            <div class="qr-container">
+              <img src="imagenes/pagos/yape-qr.png" alt="Yape QR" />
+              <p>Escanea este código QR con tu app Yape para pagar</p>
+            </div>
+          </div>
+
+          <div id="extra-plin-entrada" class="extra-pago hidden">
+            <h3>Paga con Plin</h3>
+            <div class="qr-container">
+              <img src="imagenes/pagos/plin-qr.png" alt="Plin QR" />
+              <p>Escanea este código QR con tu app Plin para pagar</p>
+            </div>
+          </div>
+
+          <div id="extra-efectivo-entrada" class="extra-pago hidden">
+            <h3>Pago en Efectivo</h3>
+            <div class="efectivo-container">
+              <p>Acérquese a la caja con este código:</p>
+              <div class="codigo-efectivo" id="codigo-efectivo-entrada">
+                NZ-XXXXX
+              </div>
+            </div>
+          </div>
+
+          <div id="resumen-pago-entrada">
+            <p>Total a pagar: <strong id="entrada-total">S/0</strong></p>
+            <div id="dto-info-entrada" class="dto-info hidden">
+              <p class="dto-line">
+                ✨ <span class="dto-marquee-sm">10% DESCUENTO</span> Lemon:
+                -<strong id="dto-monto-entrada">S/0</strong>
+              </p>
+              <p class="dto-total">
+                Total con descuento:
+                <strong id="entrada-total-final">S/0</strong>
+              </p>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-pagar">
+            ✅ Pagar S/ <span id="btn-entrada-total">0</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2026 NIGHT ZONE | Todos los derechos reservados</p>
+    </footer>
+
+    <script src="carrito.js"></script>
+    <script>
+      // ═══ SCROLL REVEAL ═══
+      function revealOnScroll() {
+        const reveals = document.querySelectorAll(".reveal");
+        const windowHeight = window.innerHeight;
+        reveals.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < windowHeight - 60) {
+            el.classList.add("visible");
+          }
+        });
+      }
+      window.addEventListener("scroll", revealOnScroll);
+      window.addEventListener("load", revealOnScroll);
+
+      // ══════════════════════════════════════
+      // ENTRADAS
+      // ══════════════════════════════════════
+      let entradaArtista = "";
+      let entradaPrecio = 0;
+
+      function abrirModalEntrada(artista, precio) {
+        entradaArtista = artista;
+        entradaPrecio = precio;
+        document.getElementById("modal-entrada-titulo").textContent =
+          "🎟️ " + artista + " - Comprar Entrada";
+        document.getElementById("entrada-cantidad").value = 1;
+        document
+          .querySelectorAll("#form-entrada .extra-pago")
+          .forEach((el) => el.classList.add("hidden"));
+        document
+          .getElementById("resumen-pago-entrada")
+          .classList.remove("hidden");
+        document.getElementById("dto-info-entrada").classList.add("hidden");
+        actualizarTotalEntrada();
+        document.getElementById("modal-entrada").classList.remove("hidden");
+      }
+
+      function cerrarModalEntrada() {
+        document.getElementById("modal-entrada").classList.add("hidden");
+      }
+
+      function actualizarTotalEntrada() {
+        const cant =
+          parseInt(document.getElementById("entrada-cantidad").value) || 1;
+        const total = cant * entradaPrecio;
+        document.getElementById("entrada-total").textContent = "S/" + total;
+        document.getElementById("btn-entrada-total").textContent = total;
+        const metodo = document.querySelector(
+          'input[name="metodo-pago-entrada"]:checked',
+        );
+        if (metodo && metodo.value === "lemon") {
+          const dto = total * 0.1;
+          const final = total - dto;
+          document.getElementById("dto-monto-entrada").textContent =
+            "S/" + dto.toFixed(2);
+          document.getElementById("entrada-total-final").textContent =
+            "S/" + final.toFixed(2);
+          document.getElementById("btn-entrada-total").textContent =
+            final.toFixed(2);
+          document
+            .getElementById("dto-info-entrada")
+            .classList.remove("hidden");
+        } else {
+          document.getElementById("dto-info-entrada").classList.add("hidden");
+          document.getElementById("btn-entrada-total").textContent = total;
+        }
+      }
+
+      function mostrarSeccionEntrada(metodo) {
+        document
+          .querySelectorAll("#form-entrada .extra-pago")
+          .forEach((el) => el.classList.add("hidden"));
+        const seccion = document.getElementById("extra-" + metodo + "-entrada");
+        if (seccion) {
+          seccion.classList.remove("hidden");
+          if (metodo === "efectivo") {
+            document.getElementById("codigo-efectivo-entrada").textContent =
+              generarCodigoEfectivo();
+          }
+        }
+        actualizarTotalEntrada();
+      }
+
+      document
+        .querySelectorAll('input[name="metodo-pago-entrada"]')
+        .forEach((r) => {
+          r.addEventListener("change", function () {
+            mostrarSeccionEntrada(this.value);
+          });
+        });
+
+      function procesarEntrada(e) {
+        e.preventDefault();
+        const form = e.target;
+        const metodo = form["metodo-pago-entrada"].value;
+        const cant = parseInt(
+          document.getElementById("entrada-cantidad").value,
+        );
+        const nombre = document.getElementById("entrada-nombre").value;
+        const email = document.getElementById("entrada-email").value;
+        const telefono = document.getElementById("entrada-telefono").value;
+        const total = cant * entradaPrecio;
+        const totalPagar = metodo === "lemon" ? total * 0.9 : total;
+
+        let msjExtra = "";
+        if (metodo === "tarjeta") {
+          const num = form["tarjeta-numero"].value;
+          if (!num) {
+            alert("Ingrese el número de tarjeta");
+            return;
+          }
+          msjExtra = "\nTarjeta: ****" + num.slice(-4);
+        } else if (metodo === "transferencia") {
+          const cuenta = form["cuenta-numero"].value;
+          if (!cuenta) {
+            alert("Ingrese el número de cuenta");
+            return;
+          }
+          msjExtra = "\nCuenta: " + cuenta;
+        } else if (metodo === "efectivo") {
+          msjExtra =
+            "\nCódigo de caja: " +
+            (document.getElementById("codigo-efectivo-entrada").textContent ||
+              "NZ-XXXXX");
+        } else if (metodo === "yape" || metodo === "plin") {
+          msjExtra = "\nPago mediante QR - esperando confirmación";
+        }
+
+        alert(
+          "¡Compra exitosa!\n\nArtista: " +
+            entradaArtista +
+            "\nCantidad: " +
+            cant +
+            "\nCliente: " +
+            nombre +
+            "\nMétodo de pago: " +
+            metodo +
+            "\nTotal: S/" +
+            totalPagar.toFixed(2) +
+            msjExtra +
+            "\n\nTus entradas serán enviadas a: " +
+            email,
+        );
+
+        cerrarModalEntrada();
+        form.reset();
+        document
+          .querySelectorAll("#form-entrada .extra-pago")
+          .forEach((el) => el.classList.add("hidden"));
+        document.getElementById("dto-info-entrada").classList.add("hidden");
+      }
+
+      document
+        .getElementById("modal-entrada")
+        .addEventListener("click", function (e) {
+          if (e.target === this) cerrarModalEntrada();
+        });
+
+      // ══════════════════════════════════════
+      // VIP
+      // ══════════════════════════════════════
+      let vpTipo = "";
+      let vpPrecio = 0;
+
+      function abrirModalVIP(tipo, precio) {
+        vpTipo = tipo;
+        vpPrecio = precio;
+        document.getElementById("modal-vip-titulo").textContent =
+          "👑 VIP " + tipo;
+        document
+          .querySelectorAll("#form-vip .extra-pago")
+          .forEach((el) => el.classList.add("hidden"));
+        document.getElementById("dto-info-vip").classList.add("hidden");
+        document.getElementById("vip-total").textContent = "S/" + precio;
+        document.getElementById("btn-vip-total").textContent = precio;
+        document.getElementById("modal-vip").classList.remove("hidden");
+      }
+
+      function cerrarModalVIP() {
+        document.getElementById("modal-vip").classList.add("hidden");
+      }
+
+      function mostrarSeccionVIP(metodo) {
+        document
+          .querySelectorAll("#form-vip .extra-pago")
+          .forEach((el) => el.classList.add("hidden"));
+        const seccion = document.getElementById("extra-" + metodo + "-vip");
+        if (seccion) {
+          seccion.classList.remove("hidden");
+          if (metodo === "efectivo") {
+            document.getElementById("codigo-efectivo-vip").textContent =
+              generarCodigoEfectivo();
+          }
+        }
+        actualizarTotalVIP();
+      }
+
+      function actualizarTotalVIP() {
+        const total = vpPrecio;
+        const metodo = document.querySelector(
+          'input[name="metodo-pago-vip"]:checked',
+        );
+        const dtoInfo = document.getElementById("dto-info-vip");
+        if (metodo && metodo.value === "lemon") {
+          const dto = total * 0.1;
+          const final = total - dto;
+          document.getElementById("dto-monto-vip").textContent =
+            "S/" + dto.toFixed(2);
+          document.getElementById("vip-total-final").textContent =
+            "S/" + final.toFixed(2);
+          document.getElementById("btn-vip-total").textContent =
+            final.toFixed(2);
+          dtoInfo.classList.remove("hidden");
+        } else {
+          dtoInfo.classList.add("hidden");
+          document.getElementById("btn-vip-total").textContent = total;
+        }
+      }
+
+      document
+        .querySelectorAll('input[name="metodo-pago-vip"]')
+        .forEach((r) => {
+          r.addEventListener("change", function () {
+            mostrarSeccionVIP(this.value);
+          });
+        });
+
+      function procesarVIP(e) {
+        e.preventDefault();
+        const form = e.target;
+        const metodo = form["metodo-pago-vip"].value;
+        const nombre = document.getElementById("vip-nombre").value;
+        const email = document.getElementById("vip-email").value;
+        const telefono = document.getElementById("vip-telefono").value;
+        const totalPagar = metodo === "lemon" ? vpPrecio * 0.9 : vpPrecio;
+
+        let msjExtra = "";
+        if (metodo === "tarjeta") {
+          const num = form["tarjeta-numero"].value;
+          if (!num) {
+            alert("Ingrese el número de tarjeta");
+            return;
+          }
+          msjExtra = "\nTarjeta: ****" + num.slice(-4);
+        } else if (metodo === "transferencia") {
+          const cuenta = form["cuenta-numero"].value;
+          if (!cuenta) {
+            alert("Ingrese el número de cuenta");
+            return;
+          }
+          msjExtra = "\nCuenta: " + cuenta;
+        } else if (metodo === "efectivo") {
+          msjExtra =
+            "\nCódigo de caja: " +
+            (document.getElementById("codigo-efectivo-vip").textContent ||
+              "NZ-XXXXX");
+        } else if (metodo === "yape" || metodo === "plin") {
+          msjExtra = "\nPago mediante QR - esperando confirmación";
+        }
+
+        alert(
+          "¡Reserva VIP realizada con éxito!\n\nPaquete: VIP " +
+            vpTipo +
+            "\nCliente: " +
+            nombre +
+            "\nMétodo de pago: " +
+            metodo +
+            "\nTotal: S/" +
+            totalPagar.toFixed(2) +
+            msjExtra +
+            "\n\nTe contactaremos al: " +
+            telefono,
+        );
+
+        cerrarModalVIP();
+        form.reset();
+        document
+          .querySelectorAll("#form-vip .extra-pago")
+          .forEach((el) => el.classList.add("hidden"));
+        document.getElementById("dto-info-vip").classList.add("hidden");
+      }
+
+      document
+        .getElementById("modal-vip")
+        .addEventListener("click", function (e) {
+          if (e.target === this) cerrarModalVIP();
+        });
+    </script>
+  </body>
+</html>

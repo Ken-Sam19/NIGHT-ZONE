@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Momentos - Night Zone</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="icon" type="image/png" href="imagenes.png" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #0a0a1a;
+        color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow-x: hidden;
+      }
+      .page-hero {
+        position: relative;
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 140px 20px 60px;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          #0a0a1a 0%,
+          #0a1a2e 40%,
+          #1a0a2e 100%
+        );
+      }
+      .page-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at 30% 50%,
+            rgba(0, 229, 255, 0.12) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 70% 50%,
+            rgba(255, 0, 255, 0.1) 0%,
+            transparent 50%
+          );
+        z-index: 1;
+        animation: heroPulse 6s ease-in-out infinite alternate;
+      }
+      @keyframes heroPulse {
+        0% {
+          opacity: 0.6;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      .particles {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        overflow: hidden;
+      }
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #33fd00;
+        border-radius: 50%;
+        opacity: 0;
+        animation: particleFloat 8s infinite;
+        box-shadow:
+          0 0 6px #6beb02,
+          0 0 12px #48f803dc;
+      }
+      .particle:nth-child(1) {
+        left: 10%;
+        animation-delay: 0s;
+        animation-duration: 7s;
+        background: #00e5ff;
+        box-shadow: 0 0 6px #00e5ff;
+      }
+      .particle:nth-child(2) {
+        left: 25%;
+        animation-delay: 1.2s;
+        animation-duration: 9s;
+        width: 3px;
+        height: 3px;
+      }
+      .particle:nth-child(3) {
+        left: 40%;
+        animation-delay: 2.5s;
+        animation-duration: 6s;
+      }
+      .particle:nth-child(4) {
+        left: 55%;
+        animation-delay: 0.8s;
+        animation-duration: 8s;
+        width: 5px;
+        height: 5px;
+        background: #00e5ff;
+        box-shadow: 0 0 6px #00e5ff;
+      }
+      .particle:nth-child(5) {
+        left: 70%;
+        animation-delay: 3s;
+        animation-duration: 7s;
+      }
+      .particle:nth-child(6) {
+        left: 85%;
+        animation-delay: 2s;
+        animation-duration: 9s;
+        width: 3px;
+        height: 3px;
+        background: #ffd700;
+        box-shadow: 0 0 6px #ffd700;
+      }
+      .particle:nth-child(7) {
+        left: 50%;
+        animation-delay: 4s;
+        animation-duration: 6s;
+        width: 5px;
+        height: 5px;
+        background: #00e5ff;
+        box-shadow: 0 0 6px #00e5ff;
+      }
+      .particle:nth-child(8) {
+        left: 15%;
+        animation-delay: 3.5s;
+        animation-duration: 8s;
+        background: #ffd700;
+        box-shadow: 0 0 6px #ffd700;
+      }
+      @keyframes particleFloat {
+        0% {
+          transform: translateY(100vh) scale(0);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-10vh) scale(1);
+          opacity: 0;
+        }
+      }
+      .hero-content {
+        position: relative;
+        z-index: 3;
+        max-width: 800px;
+      }
+      .hero-badge {
+        display: inline-block;
+        padding: 8px 24px;
+        border: 1px solid rgba(0, 229, 255, 0.4);
+        border-radius: 50px;
+        font-size: 13px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #00e5ff;
+        margin-bottom: 24px;
+        backdrop-filter: blur(10px);
+        background: rgba(0, 229, 255, 0.08);
+      }
+      .hero-title {
+        font-size: clamp(42px, 7vw, 80px);
+        font-weight: 900;
+        line-height: 1;
+        margin-bottom: 16px;
+        background: linear-gradient(135deg, #fff 0%, #00e5ff 40%, #ff00ff 70%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: heroTitle 4s ease-in-out infinite alternate;
+      }
+      @keyframes heroTitle {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+      .hero-sub {
+        font-size: clamp(16px, 2vw, 20px);
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 10px;
+      }
+      .gallery-section {
+        padding: 60px 20px 80px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .carrusel-main {
+        border-radius: 24px;
+        overflow: hidden;
+        aspect-ratio: 21/9;
+        background: rgba(0, 0, 0, 0.3);
+        position: relative;
+      }
+      .carrusel-main img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .carrusel-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.2);
+        padding: 20px;
+      }
+      .carrusel-overlay h2 {
+        font-size: 48px;
+        color: #fff;
+        text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        margin-bottom: 10px;
+      }
+      .carrusel-overlay > p {
+        font-size: 20px;
+        color: #ddd;
+      }
+      .carrusel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border: none;
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        font-size: 26px;
+        cursor: pointer;
+        transition: 0.3s;
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .carrusel-btn:hover {
+        background: #ff00ff;
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 0 25px rgba(255, 0, 255, 0.3);
+      }
+      .carrusel-prev {
+        left: 20px;
+      }
+      .carrusel-next {
+        right: 20px;
+      }
+      .carrusel-indice {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+        margin-top: 16px;
+      }
+      .carrusel-thumbs {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 16px;
+        margin-top: 30px;
+      }
+      .carrusel-thumb {
+        aspect-ratio: 16/9;
+        border-radius: 14px;
+        overflow: hidden;
+        cursor: pointer;
+        opacity: 0.6;
+        transition: 0.3s ease;
+        border: 2px solid transparent;
+        position: relative;
+      }
+      .carrusel-thumb:hover {
+        opacity: 1;
+        border-color: #ff00ff;
+        transform: scale(1.04);
+        box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+      }
+      .carrusel-thumb.activo {
+        opacity: 1;
+        border-color: #ff00ff;
+        box-shadow: 0 0 25px #ff00ff;
+      }
+      .carrusel-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .carrusel-thumb .galeria-label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 6px 10px;
+        font-size: 11px;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+      }
+      .lightbox.hidden {
+        display: none;
+      }
+      .lightbox img {
+        max-width: 95vw;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 0 60px rgba(255, 0, 255, 0.15);
+        cursor: default;
+      }
+      .lightbox-cerrar {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 42px;
+        color: #fff;
+        cursor: pointer;
+        transition: 0.3s;
+        z-index: 10;
+        opacity: 0.7;
+        line-height: 1;
+      }
+      .lightbox-cerrar:hover {
+        opacity: 1;
+        color: #ff00ff;
+        transform: rotate(90deg);
+      }
+      .lightbox-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        border: none;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        font-size: 32px;
+        cursor: pointer;
+        transition: 0.3s;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .lightbox-btn:hover {
+        background: rgba(255, 0, 255, 0.3);
+        border-color: #ff00ff;
+        box-shadow: 0 0 25px rgba(255, 0, 255, 0.3);
+        transform: translateY(-50%) scale(1.1);
+      }
+      .lightbox-prev {
+        left: 20px;
+      }
+      .lightbox-next {
+        right: 20px;
+      }
+      .lightbox-indice {
+        position: absolute;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 15px;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 8px 20px;
+        border-radius: 20px;
+        backdrop-filter: blur(4px);
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .volver {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 10;
+        color: #fff;
+        font-size: 16px;
+        text-decoration: none;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: 0.3s;
+      }
+      .volver:hover {
+        background: #ff00ff;
+      }
+      footer {
+        background: #000;
+        text-align: center;
+        padding: 25px;
+        margin-top: 0;
+      }
+      footer p {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+      }
+      @media (max-width: 768px) {
+        .page-hero {
+          min-height: 50vh;
+          padding: 120px 20px 40px;
+        }
+        .carrusel-overlay h2 {
+          font-size: 28px;
+        }
+        .carrusel-overlay > p {
+          font-size: 16px;
+        }
+        .carrusel-thumbs {
+          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tabs">
+      <a href="index.html" class="tab-btn">Inicio</a>
+      <a href="eventos.html" class="tab-btn">Eventos</a>
+      <a href="entradas.html" class="tab-btn">Entradas</a>
+      <a href="reservas.html" class="tab-btn">Reservas</a>
+      <a href="bebidas.html" class="tab-btn">Bebidas</a>
+      <a href="carrito.html" class="tab-btn"
+        >Carrito <span class="cart-count">0</span></a
+      >
+      <a href="transporte.html" class="tab-btn">Transporte</a>
+      <a href="galeria.html" class="tab-btn activo">Momentos</a>
+    </div>
+    <div class="tabs secundarias">
+      <a href="ubicacion.html" class="tab-btn secundario">Ubicación</a>
+      <a href="clientes.html" class="tab-btn secundario">Clientes</a>
+      <a href="ventas.html" class="tab-btn secundario">Ventas</a>
+    </div>
+
+    <section class="page-hero">
+      <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge">Momentos Inolvidables</div>
+        <img
+          src="imagenes/NIGHT ZONE LOGO.jpg"
+          alt="Night Zone Logo"
+          class="logo-hero-sm"
+        />
+        <h1 class="hero-title">Momentos</h1>
+        <p class="hero-sub">Revive los mejores momentos de Night Zone.</p>
+      </div>
+    </section>
+
+    <section class="gallery-section reveal">
+      <div class="carrusel" id="carrusel">
+        <div class="carrusel-main">
+          <img
+            id="carrusel-img"
+            src=""
+            alt="Momentos Night Zone"
+            loading="lazy"
+          />
+          <div class="carrusel-overlay">
+            <a href="index.html" class="volver">← Volver al inicio</a>
+            <h2>Momentos Night Zone</h2>
+            <p>Momentos inolvidables en nuestra discoteca.</p>
+          </div>
+          <button class="carrusel-btn carrusel-prev" id="carrusel-prev">
+            ‹
+          </button>
+          <button class="carrusel-btn carrusel-next" id="carrusel-next">
+            ›
+          </button>
+        </div>
+        <p class="carrusel-indice" id="carrusel-indice"></p>
+        <div class="carrusel-thumbs" id="carrusel-thumbs"></div>
+      </div>
+    </section>
+
+    <div id="lightbox" class="lightbox hidden">
+      <span class="lightbox-cerrar">&times;</span>
+      <button class="lightbox-btn lightbox-prev">‹</button>
+      <img id="lightbox-img" src="" alt="Fullscreen" />
+      <button class="lightbox-btn lightbox-next">›</button>
+      <p class="lightbox-indice" id="lightbox-indice"></p>
+    </div>
+
+    <footer><p>© 2026 NIGHT ZONE | Todos los derechos reservados</p></footer>
+    <script src="carrito.js"></script>
+    <script>
+      const imagenes = [
+        /* ... */
+      ];
+      // We'll dynamically load from the existing galeria logic, keeping the full list
+      const imagenesList = [
+        "170700_OMLV_OwnersTable.jpeg",
+        "19424409_1363043590453149_771943342136597681_n.jpg",
+        "2022_0410_MikeKirschbaum_Omnia_Deseo_HIRES-5481-scaled.jpg",
+        "2022_0410_MikeKirschbaum_Omnia_Deseo_HIRES-5490-scaled.jpg",
+        "2022_0410_MikeKirschbaum_Omnia_Deseo_HIRES-6056-scaled.jpg",
+        "2022_0415_MikeKirschbaum_Omnia_Kaskade_HIRES-25-scaled.jpg",
+        "2022_0506_MikeKirschbaum_OMNIA_ILL_HI-4915-scaled.jpg",
+        "DSC_0010-scaled.jpg",
+        "DSC_0647-scaled.jpg",
+        "DSC_0680-scaled.jpg",
+        "DSC_0762-scaled.jpg",
+        "DSC_0863-scaled.jpg",
+        "DSC_0909-scaled.jpg",
+        "DSC_1132-scaled.jpg",
+        "DSC_1417-scaled.jpg",
+        "DSC_2552-scaled.jpg",
+        "DSC_2757-scaled.jpg",
+        "DSC_2775-scaled.jpg",
+        "DSC_5200-scaled.jpg",
+        "DSC_7591-scaled.jpg",
+        "DSC_7693-scaled.jpg",
+        "DSC_7712-scaled.jpg",
+        "DSC_7925-1-scaled.jpg",
+        "DSC_8047-scaled.jpg",
+        "DSC_9239-scaled.jpg",
+        "Marshall_Omnia_7.5.22_WebRes-2.jpg",
+        "Marshall_Omnia_7.5.22_WebRes-20.jpg",
+        "Marshall_Omnia_7.5.22_WebRes-38.jpg",
+        "Marshall_Omnia_7.5.22_WebRes-60.jpg",
+        "Marshall_Omnia_7.5.22_WebRes-75.jpg",
+        "Marshall_Omnia_7.5.22_WebRes-95.jpg",
+        "Marshall_Omnia_7.5.22_WebRes.jpg",
+        "Omnia_AboveBeyond_SammyDean_07.03.22.Webres-15.jpg",
+        "Omnia_AboveBeyond_SammyDean_07.03.22.Webres-18.jpg",
+        "Omnia_AboveBeyond_SammyDean_07.03.22.Webres-28.jpg",
+        "Omnia_AboveBeyond_SammyDean_07.03.22.Webres-29.jpg",
+        "Omnia_AboveBeyond_SammyDean_07.03.22.Webres-32.jpg",
+        "Omnia_AboveBeyond_SammyDean_07.03.22.Webres-48.jpg",
+        "Omnia_AboveBeyond_SammyDean_07.03.22.Webres-64.jpg",
+        "Omnia_AboveBeyond_SammyDean_07.03.22.Webres-68.jpg",
+        "Omnia_AboveBeyond_SammyDean_07.03.22.Webres-80.jpg",
+        "Omnia_AboveBeyond_SammyDean_07.03.22.Webres-84.jpg",
+        "Omnia_Aoki_04_08_22_ChelsaChristensen_Highres-105-scaled.jpg",
+        "Omnia_ArminVanBuuren_SammyDean_05.21.22.Highres-43-scaled.jpg",
+        "Omnia_Deseo_SammyDean_05.05.22.Highres-31-scaled.jpg",
+        "Omnia_Deseo_SammyDean_05.05.22.Highres-48-scaled.jpg",
+        "Omnia_Deseo_SammyDean_05.15.22.Highres-9-scaled.jpg",
+        "Omnia_Illenium_SammyDean_07.02.22.Webres-4.jpg",
+        "Omnia_Illenium_SammyDean_07.02.22.Webres-28.jpg",
+        "Omnia_Illenium_SammyDean_07.02.22.Webres-32.jpg",
+        "Omnia_Illenium_SammyDean_07.02.22.Webres-40.jpg",
+        "Omnia_Illenium_SammyDean_07.02.22.Webres-62.jpg",
+        "Omnia_Illenium_SammyDean_07.02.22.Webres-68.jpg",
+        "Omnia_Illenium_SammyDean_07.02.22.Webres-96.jpg",
+        "Omnia_Illenium_SammyDean_07.02.22.Webres-114.jpg",
+        "Omnia_Illenium_SammyDean_07.02.22.Webres-117.jpg",
+        "Omnia_Illenium_SammyDean_07.02.22.Webres-118.jpg",
+        "Omnia_Illenium_SammyDean_07.02.22.Webres-121.jpg",
+        "Omnia_Illenium_SammyDean_07.02.22.Webres-123.jpg",
+        "Omnia_Illenium_SammyDean_07.02.22.Webres-131.jpg",
+        "Omnia_Illenium_SammyDean_07.02.22.Webres-133.jpg",
+        "Omnia_Illenium_SammyDean_07.02.22.Webres-135.jpg",
+        "Omnia_Illenium_SammyDean_07.02.22.Webres-138.jpg",
+        "Omnia_MartinGarrix_SammyDean_06.24.22.Highres-104-scaled.jpg",
+        "Omnia_PartyFavor_SammyDean_06.21.22.Highres-157-scaled.jpg",
+        "Omnia_SteveAoki_SammyDean_04.22.22.Highres-78-scaled.jpg",
+        "Omnia_SteveAoki_SammyDean_05.13.22.Highres-25-scaled.jpg",
+        "Omnia_SteveAoki_SammyDean_05.13.22.Highres-100-scaled.jpg",
+        "Omnia_SteveAoki_SammyDean_07.01.22.Highres-11-scaled.jpg",
+        "Omnia_SteveAoki_SammyDean_07.01.22.Highres-62-scaled.jpg",
+        "Omnia_SteveAoki_SammyDean_07.01.22.Highres-77-scaled.jpg",
+        "Omnia_SteveAoki_SammyDean_07.01.22.Highres-78-scaled.jpg",
+        "Omnia_SteveAoki_SammyDean_07.01.22.Highres-82-scaled.jpg",
+        "Omnia_SteveAoki_SammyDean_07.01.22.Highres-109-1-scaled.jpg",
+        "Omnia_SteveAoki_SammyDean_07.01.22.Highres-116-scaled.jpg",
+        "Omnia_SteveAoki_SammyDean_07.01.22.Highres-142-scaled.jpg",
+        "Omnia_SteveAoki_SammyDean_07.01.22.Highres-143-scaled.jpg",
+        "Omnia_SteveAoki_SammyDean_07.01.22.Highres-158-scaled.jpg",
+        "Omnia_SteveAoki_SammyDean_07.01.22.Highres-159-scaled.jpg",
+        "Omnia.Illenium.SammyDean.07.02.23.Highres-50-scaled.jpg",
+        "OMNIA-144.jpg",
+        "OMNIA-Bottle-Presentation.jpg",
+        "omnia-121-scaled.jpg",
+        "omnia-240-scaled.jpg",
+        "omnia-290-scaled.jpg",
+        "omnia_008.jpg",
+        "omnia_009.jpg",
+        "omnia_012.jpg",
+        "omnia_027.jpg",
+        "omnia_032.jpg",
+        "omnia_034.jpg",
+        "mexican_indepenence_2400x1260-1.jpg",
+        "omdc.jpg",
+        "privateeventomnia.jpg",
+        "SamMarshall_Omnia_05.07.22_HighRes-59-scaled.jpg",
+        "SamMarshall_Omnia_05.07.22_HighRes-68-scaled.jpg",
+        "SamMarshall_Omnia_5.20.22_HighRes-scaled.jpg",
+      ];
+      let indiceActual = 0;
+      const rutaBase = "imagenes/galeria/";
+      const imgPrincipal = document.getElementById("carrusel-img");
+      const contenedorThumbs = document.getElementById("carrusel-thumbs");
+      const indicador = document.getElementById("carrusel-indice");
+      function cargarGaleria() {
+        if (imagenesList.length === 0) return;
+        imgPrincipal.src = rutaBase + imagenesList[0];
+        indicador.textContent = "1 / " + imagenesList.length;
+        contenedorThumbs.innerHTML = "";
+        imagenesList.forEach((img, i) => {
+          const t = document.createElement("div");
+          t.className = "carrusel-thumb" + (i === 0 ? " activo" : "");
+          t.innerHTML =
+            '<img src="' +
+            rutaBase +
+            img +
+            '" alt="Foto ' +
+            (i + 1) +
+            '" loading="lazy"><span class="galeria-label">Foto ' +
+            (i + 1) +
+            "</span>";
+          t.addEventListener("click", () => irAFoto(i));
+          contenedorThumbs.appendChild(t);
+        });
+      }
+      function irAFoto(i) {
+        if (i < 0) i = imagenesList.length - 1;
+        if (i >= imagenesList.length) i = 0;
+        indiceActual = i;
+        imgPrincipal.src = rutaBase + imagenesList[indiceActual];
+        indicador.textContent = indiceActual + 1 + " / " + imagenesList.length;
+        document.querySelectorAll(".carrusel-thumb").forEach((el, j) => {
+          el.classList.toggle("activo", j === indiceActual);
+        });
+      }
+      document
+        .getElementById("carrusel-prev")
+        .addEventListener("click", () => irAFoto(indiceActual - 1));
+      document
+        .getElementById("carrusel-next")
+        .addEventListener("click", () => irAFoto(indiceActual + 1));
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") irAFoto(indiceActual - 1);
+        if (e.key === "ArrowRight") irAFoto(indiceActual + 1);
+      });
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const lightboxIndice = document.getElementById("lightbox-indice");
+      function abrirLightbox(i) {
+        indiceActual = i;
+        lightboxImg.src = rutaBase + imagenesList[indiceActual];
+        lightboxIndice.textContent =
+          indiceActual + 1 + " / " + imagenesList.length;
+        lightbox.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
+      function cerrarLightbox() {
+        lightbox.classList.add("hidden");
+        document.body.style.overflow = "";
+      }
+      function irEnLightbox(d) {
+        let n = indiceActual + d;
+        if (n < 0) n = imagenesList.length - 1;
+        if (n >= imagenesList.length) n = 0;
+        indiceActual = n;
+        lightboxImg.src = rutaBase + imagenesList[indiceActual];
+        lightboxIndice.textContent =
+          indiceActual + 1 + " / " + imagenesList.length;
+      }
+      contenedorThumbs.addEventListener("click", (e) => {
+        const t = e.target.closest(".carrusel-thumb");
+        if (!t) return;
+        const idx = Array.from(contenedorThumbs.children).indexOf(t);
+        abrirLightbox(idx);
+      });
+      document.getElementById("carrusel-img").addEventListener("click", () => {
+        abrirLightbox(indiceActual);
+      });
+      lightbox
+        .querySelector(".lightbox-cerrar")
+        .addEventListener("click", cerrarLightbox);
+      lightbox
+        .querySelector(".lightbox-prev")
+        .addEventListener("click", () => irEnLightbox(-1));
+      lightbox
+        .querySelector(".lightbox-next")
+        .addEventListener("click", () => irEnLightbox(1));
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) cerrarLightbox();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (lightbox.classList.contains("hidden")) return;
+        if (e.key === "Escape") cerrarLightbox();
+        if (e.key === "ArrowLeft") irEnLightbox(-1);
+        if (e.key === "ArrowRight") irEnLightbox(1);
+      });
+      cargarGaleria();
+      function revealOnScroll() {
+        const r = document.querySelectorAll(".reveal");
+        const h = window.innerHeight;
+        r.forEach((e) => {
+          if (e.getBoundingClientRect().top < h - 60)
+            e.classList.add("visible");
+        });
+      }
+      window.addEventListener("scroll", revealOnScroll);
+      window.addEventListener("load", revealOnScroll);
+    </script>
+  </body>
+</html>

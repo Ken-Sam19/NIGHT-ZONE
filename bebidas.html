@@ -1,0 +1,957 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bebidas - Night Zone</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="icon" type="image/png" href="imagenes.png" />
+    <style>
+      body {
+        background: url("imagenes/galeria/omnia_009.jpg") center/cover fixed
+          no-repeat;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 12, 41, 0.85);
+        z-index: 0;
+      }
+      body > * {
+        position: relative;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tabs">
+      <a href="index.html" class="tab-btn">Inicio</a>
+      <a href="eventos.html" class="tab-btn">Eventos</a>
+      <a href="entradas.html" class="tab-btn">Entradas</a>
+      <a href="reservas.html" class="tab-btn">Reservas</a>
+      <a href="bebidas.html" class="tab-btn activo">Bebidas</a>
+      <a href="carrito.html" class="tab-btn"
+        >Carrito <span class="cart-count">0</span></a
+      >
+      <a href="transporte.html" class="tab-btn">Transporte</a>
+      <a href="galeria.html" class="tab-btn">Momentos</a>
+    </div>
+
+    <div class="tabs secundarias">
+      <a href="ubicacion.html" class="tab-btn secundario">Ubicación</a>
+      <a href="clientes.html" class="tab-btn secundario">Clientes</a>
+      <a href="ventas.html" class="tab-btn secundario">Ventas</a>
+    </div>
+
+    <div class="contenido">
+      <a href="index.html" class="volver">← Volver al inicio</a>
+      <img
+        src="imagenes/NIGHT ZONE LOGO.jpg"
+        alt="Night Zone Logo"
+        class="logo-hero"
+      />
+      <h2>Carta de Bebidas</h2>
+      <p>Descubre nuestra selección de bebidas premium.</p>
+
+      <div class="hero-seccion">
+        <img
+          src="imagenes/bebidas/bar.jpg"
+          alt="Bar Night Zone"
+          loading="lazy"
+        />
+        <div class="hero-overlay">
+          <div>
+            <h2>🍸 Coctelería de autor</h2>
+            <p>Los mejores tragos preparados por nuestros bartenders</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-categoria">🥃 Licores Embotellados</h3>
+      <div class="cards">
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/bebidas embotelladas/Johnnie Walker Red Label.jpg"
+            alt="Johnnie Walker Red Label"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Johnnie Walker Red Label</h3>
+            <p>Whisky escocés de entrada. Mezcla vibrante y accesible.</p>
+            <p class="precio">S/45</p>
+           
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/bebidas embotelladas/Johnnie Walker Black Label.jpg"
+            alt="Johnnie Walker Black Label"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Johnnie Walker Black Label</h3>
+            <p>Mezcla de 12 años. Suave, complejo y equilibrado.</p>
+            <p class="precio">S/75</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/bebidas embotelladas/Johnnie Walker Double Black.jpg"
+            alt="Johnnie Walker Double Black"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Johnnie Walker Double Black</h3>
+            <p>Intensamente ahumado con un toque extra de roble.</p>
+            <p class="precio">S/90</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/bebidas embotelladas/Johnnie Walker Green Label .jpg"
+            alt="Johnnie Walker Green Label"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Johnnie Walker Green Label</h3>
+            <p>Maltas 15 años. Single malts naturales y ahumados.</p>
+            <p class="precio">S/110</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/bebidas embotelladas/Johnnie Walker Gold Label Reserve .jpg"
+            alt="Johnnie Walker Gold Label Reserve"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Johnnie Walker Gold Label Reserve</h3>
+            <p>Mezcla cremosa con notas de miel y vainilla.</p>
+            <p class="precio">S/130</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/bebidas embotelladas/Johnnie Walker 18 Years .jpg"
+            alt="Johnnie Walker 18 Years"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Johnnie Walker 18 Years</h3>
+            <p>Mezcla ultra premium de 18 años. Elegancia pura.</p>
+            <p class="precio">S/180</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/bebidas embotelladas/Johnnie Walker Blue Label .jpg"
+            alt="Johnnie Walker Blue Label"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Johnnie Walker Blue Label</h3>
+            <p>Mezcla excepcional. Suave y ahumado, lo mejor de JW.</p>
+            <p class="precio">S/250</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/champan-moet.jpg"
+            alt="Champán Moët"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Champán Moët</h3>
+            <p>Moët & Chandon Brut Imperial. La elegancia francesa.</p>
+            <p class="precio">S/90</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/vodka-grey-goose.jpg"
+            alt="Vodka Grey Goose"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Vodka Grey Goose</h3>
+            <p>Vodka premium francés. Botella entera con mezcladores.</p>
+            <p class="precio">S/80</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/tequila-don-julio.jpg"
+            alt="Tequila Don Julio"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Tequila Don Julio 1942</h3>
+            <p>Añejo premium. Ideal para paladares exigentes.</p>
+            <p class="precio">S/150</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/ron-bacardi.jpg"
+            alt="Ron Bacardí"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Ron Bacardí Añejo</h3>
+            <p>Ron añejo de 8 años. Suave y dulce.</p>
+            <p class="precio">S/60</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/ginebra-hendricks.jpg"
+            alt="Ginebra Hendrick's"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Ginebra Hendrick's</h3>
+            <p>Ginebra premium infusionada con pepino y pétalos de rosa.</p>
+            <p class="precio">S/70</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/wiskys/jack-daniels.jpg"
+            alt="Jack Daniel's"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Jack Daniel's</h3>
+            <p>Whisky Tennessee. Suave con notas de vainilla y roble.</p>
+            <p class="precio">S/80</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/wiskys/chivas-rega.jpg"
+            alt="Chivas Regal"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Chivas Regal 12</h3>
+            <p>Whisky escocés blend. Cremoso y equilibrado.</p>
+            <p class="precio">S/85</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/wiskys/ballantines..jpg"
+            alt="Ballantine's"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Ballantine's</h3>
+            <p>Whisky escocés suave con notas de miel y roble.</p>
+            <p class="precio">S/65</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/wiskys/glenfiddich.jpg"
+            alt="Glenfiddich"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Glenfiddich 12</h3>
+            <p>Single malt escocés. Notas de pera y roble.</p>
+            <p class="precio">S/100</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/wiskys/MacallanDouble.jpg"
+            alt="Macallan Double"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Macallan Double Cask</h3>
+            <p>Single malt de 12 años. Roble americano y europeo.</p>
+            <p class="precio">S/140</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/wiskys/jim beam.jpg"
+            alt="Jim Beam"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Jim Beam</h3>
+            <p>Bourbon americano. Notas de vainilla y caramelo.</p>
+            <p class="precio">S/55</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-categoria">🍸 Cócteles Preparados</h3>
+      <div class="cards">
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/coctel-casa.jpg"
+            alt="Cóctel de la Casa"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Cóctel de la Casa</h3>
+            <p>Receta exclusiva del bartender. Ingrediente secreto.</p>
+            <p class="precio">S/15</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/mojito.jpg"
+            alt="Mojito"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Mojito Clásico</h3>
+            <p>Ron, hierbabuena, lima, azúcar y soda. Refrescante.</p>
+            <p class="precio">S/12</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/margarita.jpg"
+            alt="Margarita"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Margarita Frozen</h3>
+            <p>Tequila, triple sec, limón, hielo. Con sal en el borde.</p>
+            <p class="precio">S/14</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/pina-colada.jpg"
+            alt="Piña Colada"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Piña Colada</h3>
+            <p>Ron, crema de coco, piña. El tropical perfecto.</p>
+            <p class="precio">S/13</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/old-fashioned.jpg"
+            alt="Old Fashioned"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Old Fashioned</h3>
+            <p>Whisky, azúcar, angostura, twist de naranja. Clásico.</p>
+            <p class="precio">S/16</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/cosmopolitan.jpg"
+            alt="Cosmopolitan"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Cosmopolitan</h3>
+            <p>Vodka, triple sec, arándano, lima. Elegante y ácido.</p>
+            <p class="precio">S/14</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cocteles/gin tonic.jpg"
+            alt="Gin Tonic"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Gin Tonic</h3>
+            <p>Ginebra premium, tónica, lima y enebro. Clásico.</p>
+            <p class="precio">S/18</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cocteles/Espresso-Martini.jpg"
+            alt="Espresso Martini"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Espresso Martini</h3>
+            <p>Vodka, licor de café, espresso. Energía y sabor.</p>
+            <p class="precio">S/20</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cocteles/frozen-banana-daiquiri.jpg"
+            alt="Frozen Banana Daiquiri"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Frozen Banana Daiquiri</h3>
+            <p>Ron, banana, limón, hielo. Cremoso y tropical.</p>
+            <p class="precio">S/16</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cocteles/machupicchu.jpg"
+            alt="Machu Picchu"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Machu Picchu</h3>
+            <p>Cóctel peruano con pisco, maracuyá y hierbabuena.</p>
+            <p class="precio">S/18</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cocteles/bacardi.jpg"
+            alt="Bacardí Cocktail"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Bacardí Cocktail</h3>
+            <p>Ron Bacardí, granadina, lima. Dulce y refrescante.</p>
+            <p class="precio">S/15</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-categoria">🍺 Cervezas y Sidras</h3>
+      <div class="cards">
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/cerveza.jpg"
+            alt="Cerveza Importada"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Cerveza Importada</h3>
+            <p>Corona / Heineken / Stella Artois. Lata 355ml.</p>
+            <p class="precio">S/8</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/cerveza.jpg"
+            alt="Cerveza Artesanal"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Cerveza Artesanal</h3>
+            <p>IPA local. Cerveza artesanal premium. Pinta.</p>
+            <p class="precio">S/10</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/bebidas/sidra-magners.jpg"
+            alt="Sidra Magners"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Sidra Magners</h3>
+            <p>Sidra irlandesa de pera. Dulce y refrescante.</p>
+            <p class="precio">S/9</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cervezas/cristal.jpg"
+            alt="Cristal"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Cerveza Cristal</h3>
+            <p>Cerveza peruana ligera y refrescante. Botella 620ml.</p>
+            <p class="precio">S/7</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cervezas/Pilsen Callao.jpg"
+            alt="Pilsen Callao"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Pilsen Callao</h3>
+            <p>Cerveza peruana clásica. Sabor suave y equilibrado.</p>
+            <p class="precio">S/7</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cervezas/Cusqueña.jpg"
+            alt="Cusqueña"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Cusqueña</h3>
+            <p>Cerveza peruana premium. Maltas seleccionadas.</p>
+            <p class="precio">S/8</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cervezas/Pilsner Urquell.jpg"
+            alt="Pilsner Urquell"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Pilsner Urquell</h3>
+            <p>Cerveza checa. La primera pilsener del mundo.</p>
+            <p class="precio">S/10</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cervezas/Guinness.jpg"
+            alt="Guinness"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Guinness</h3>
+            <p>Stout irlandesa. Cremosa, oscura y con carácter.</p>
+            <p class="precio">S/12</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cervezas/dos-equis.jpg"
+            alt="Dos Equis"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Dos Equis</h3>
+            <p>Cerveza mexicana. Ámbar ligera con toque de malta.</p>
+            <p class="precio">S/9</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cervezas/Delirium Tremens.jpg"
+            alt="Delirium Tremens"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Delirium Tremens</h3>
+            <p>Belgian strong ale. 8.5% de alcohol. Sabor único.</p>
+            <p class="precio">S/15</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cervezas/barbarium.jpg"
+            alt="Barbarium"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Barbarium</h3>
+            <p>Cerveza artesanal peruana. Fuerte y con personalidad.</p>
+            <p class="precio">S/14</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cervezas/7 vidas.jpg"
+            alt="7 Vidas"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>7 Vidas</h3>
+            <p>Cerveza artesanal peruana. IPA con lúpulo intenso.</p>
+            <p class="precio">S/13</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-categoria">🚬 Cigarros y Puros</h3>
+      <div class="cards">
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cigarros/Cohiba Behike.jpg"
+            alt="Cohiba Behike"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Cohiba Behike</h3>
+            <p>Puro cubano premium. Sabor intenso y aroma inigualable.</p>
+            <p class="precio">S/45</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cigarros/Montecristo No. 2.jpg"
+            alt="Montecristo No. 2"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Montecristo No. 2</h3>
+            <p>Puro cubano clásico. Torpedo de 6 pulgadas.</p>
+            <p class="precio">S/35</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cigarros/Cigarrillos Premium.jpg"
+            alt="Cigarrillos Premium"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Cigarrillos Premium</h3>
+            <p>Pack de cigarros importados. Marca Dunhill / Davidoff.</p>
+            <p class="precio">S/15</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cigarros/marlboro.jpg"
+            alt="Marlboro"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Marlboro</h3>
+            <p>Clásico americano. Suave y equilibrado.</p>
+            <p class="precio">S/12</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cigarros/lucky-strike.jpg"
+            alt="Lucky Strike"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Lucky Strike</h3>
+            <p>Sabor intenso y auténtico. Toasted.</p>
+            <p class="precio">S/11</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cigarros/winston.jpg"
+            alt="Winston"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Winston</h3>
+            <p>Cigarrillo suave de tirana rubia.</p>
+            <p class="precio">S/10</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cigarros/Kent.jpg"
+            alt="Kent"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Kent</h3>
+            <p>Cigarrillo premium. Filtro de carbón activado.</p>
+            <p class="precio">S/13</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cigarros/Pall Mall.jpg"
+            alt="Pall Mall"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Pall Mall</h3>
+            <p>Americano de tirana rubia. Suave y rendidor.</p>
+            <p class="precio">S/11</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/cigarros/montecristo.jpg"
+            alt="Montecristo"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Montecristo</h3>
+            <p>Puro cubano de excelencia. Sabor y aroma inigualables.</p>
+            <p class="precio">S/35</p>
+            <button class="btn-comprar">Comprar</button>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-categoria">🧃 Sin Alcohol</h3>
+      <div class="cards">
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/sin alcohol/7 UP.jpg"
+            alt="7 UP"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>7 UP</h3>
+            <p>Refrescante lima-limón. Lata 355ml.</p>
+            <p class="precio">S/3</p>
+            <button class="btn-comprar">Comprar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/sin alcohol/SPRITE.jpg"
+            alt="Sprite"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Sprite</h3>
+            <p>Gaseosa sabor lima-limón. Lata 355ml.</p>
+            <p class="precio">S/3</p>
+            <button class="btn-comprar">Comprar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/sin alcohol/FANTA.jpg"
+            alt="Fanta"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Fanta</h3>
+            <p>Gaseosa sabor naranja. Lata 355ml.</p>
+            <p class="precio">S/3</p>
+            <button class="btn-comprar">Comprar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/sin alcohol/PEPSI.jpg"
+            alt="Pepsi"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Pepsi</h3>
+            <p>Gaseosa cola. Lata 355ml.</p>
+            <p class="precio">S/3</p>
+            <button class="btn-comprar">Comprar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/sin alcohol/LIMONADA DE SANDIA.jpg"
+            alt="Limonada de Sandía"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Limonada de Sandía</h3>
+            <p>Limonada natural con sandía. Refrescante y dulce.</p>
+            <p class="precio">S/7</p>
+            <button class="btn-comprar">Comprar</button>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="imagenes/sin alcohol/TROPICAL LOVE.jpg"
+            alt="Tropical Love"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3>Tropical Love</h3>
+            <p>Cóctel sin alcohol. Mango, maracuyá y jengibre.</p>
+            <p class="precio">S/8</p>
+            <button class="btn-comprar">Comprar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2026 NIGHT ZONE | Todos los derechos reservados</p>
+    </footer>
+
+    <script src="carrito.js"></script>
+    <script>
+      document.querySelectorAll(".btn-comprar").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const prod = this.closest(".card")?.querySelector("h3")?.textContent;
+          const precioEl = this.closest(".card")?.querySelector(".precio");
+          const precio = precioEl
+            ? parseFloat(
+                precioEl.textContent.replace("S/", "").replace(",", ""),
+              )
+            : 0;
+          if (prod) agregarCarrito(prod, precio);
+        });
+      });
+      document.querySelectorAll(".btn-reservar").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const prod = this.closest(".card")?.querySelector("h3")?.textContent;
+          const precioEl = this.closest(".card")?.querySelector(".precio");
+          const precio = precioEl
+            ? parseFloat(
+                precioEl.textContent.replace("S/", "").replace(",", ""),
+              )
+            : 0;
+          if (prod) agregarCarrito(prod, precio, "", "reserva");
+        });
+      });
+    </script>
+  </body>
+</html>

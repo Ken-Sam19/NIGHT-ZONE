@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Clientes - Night Zone</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="icon" type="image/png" href="imagenes.png" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #0a0a1a;
+        color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow-x: hidden;
+      }
+      .page-hero {
+        position: relative;
+        min-height: 55vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 140px 20px 50px;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          #0a0a1a 0%,
+          #1a0a2e 40%,
+          #0a1a2e 100%
+        );
+      }
+      .page-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at 30% 50%,
+            rgba(255, 215, 0, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 70% 50%,
+            rgba(255, 0, 255, 0.1) 0%,
+            transparent 50%
+          );
+        z-index: 1;
+        animation: heroPulse 6s ease-in-out infinite alternate;
+      }
+      @keyframes heroPulse {
+        0% {
+          opacity: 0.6;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      .particles {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        overflow: hidden;
+      }
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #ffd700;
+        border-radius: 50%;
+        opacity: 0;
+        animation: particleFloat 8s infinite;
+        box-shadow:
+          0 0 6px #ffd700,
+          0 0 12px #ffd700;
+      }
+      .particle:nth-child(1) {
+        left: 10%;
+        animation-delay: 0s;
+        animation-duration: 7s;
+        background: #ff00ff;
+        box-shadow: 0 0 6px #ff00ff;
+      }
+      .particle:nth-child(2) {
+        left: 25%;
+        animation-delay: 1.2s;
+        animation-duration: 9s;
+        width: 3px;
+        height: 3px;
+      }
+      .particle:nth-child(3) {
+        left: 40%;
+        animation-delay: 2.5s;
+        animation-duration: 6s;
+      }
+      .particle:nth-child(4) {
+        left: 55%;
+        animation-delay: 0.8s;
+        animation-duration: 8s;
+        width: 5px;
+        height: 5px;
+        background: #00e5ff;
+        box-shadow: 0 0 6px #00e5ff;
+      }
+      .particle:nth-child(5) {
+        left: 70%;
+        animation-delay: 3s;
+        animation-duration: 7s;
+      }
+      .particle:nth-child(6) {
+        left: 85%;
+        animation-delay: 2s;
+        animation-duration: 9s;
+        width: 3px;
+        height: 3px;
+        background: #ff00ff;
+        box-shadow: 0 0 6px #ff00ff;
+      }
+      .particle:nth-child(7) {
+        left: 50%;
+        animation-delay: 4s;
+        animation-duration: 6s;
+        width: 5px;
+        height: 5px;
+      }
+      .particle:nth-child(8) {
+        left: 15%;
+        animation-delay: 3.5s;
+        animation-duration: 8s;
+        background: #00e5ff;
+        box-shadow: 0 0 6px #00e5ff;
+      }
+      @keyframes particleFloat {
+        0% {
+          transform: translateY(100vh) scale(0);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-10vh) scale(1);
+          opacity: 0;
+        }
+      }
+      .hero-content {
+        position: relative;
+        z-index: 3;
+        max-width: 700px;
+      }
+      .hero-badge {
+        display: inline-block;
+        padding: 8px 24px;
+        border: 1px solid rgba(255, 215, 0, 0.4);
+        border-radius: 50px;
+        font-size: 13px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #ffd700;
+        margin-bottom: 24px;
+        backdrop-filter: blur(10px);
+        background: rgba(255, 215, 0, 0.08);
+      }
+      .hero-title {
+        font-size: clamp(38px, 6vw, 70px);
+        font-weight: 900;
+        line-height: 1;
+        margin-bottom: 16px;
+        background: linear-gradient(135deg, #fff 0%, #ffd700 40%, #ff00ff 70%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: heroTitle 4s ease-in-out infinite alternate;
+      }
+      @keyframes heroTitle {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+      .hero-sub {
+        font-size: clamp(15px, 1.8vw, 18px);
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 10px;
+      }
+      .hero-stats {
+        display: flex;
+        gap: 40px;
+        justify-content: center;
+        margin-top: 30px;
+        flex-wrap: wrap;
+      }
+      .hero-stat {
+        text-align: center;
+      }
+      .hero-stat-num {
+        font-size: 36px;
+        font-weight: 900;
+        background: linear-gradient(135deg, #ffd700, #ff00ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .hero-stat-label {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-top: 4px;
+      }
+      .section {
+        padding: 60px 20px 80px;
+      }
+      .section-header {
+        max-width: 1200px;
+        margin: 0 auto 40px;
+        padding: 0 20px;
+        text-align: center;
+      }
+      .section-title {
+        font-size: clamp(24px, 3.5vw, 38px);
+        font-weight: 900;
+        background: linear-gradient(135deg, #fff, #ffd700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .testimonios-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 20px;
+        padding: 0 20px;
+      }
+      .testimonio-card {
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 20px;
+        padding: 28px 24px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        transition: 0.4s;
+        text-align: left;
+      }
+      .testimonio-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(255, 215, 0, 0.2);
+        box-shadow: 0 20px 60px rgba(255, 215, 0, 0.06);
+      }
+      .testimonio-card h3 {
+        font-size: 17px;
+        font-weight: 700;
+        color: #ffd700;
+        margin-bottom: 8px;
+      }
+      .testimonio-card p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.6;
+        margin-bottom: 10px;
+      }
+      .testimonio-stars {
+        color: #ffd700;
+        font-size: 15px;
+        letter-spacing: 2px;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.05s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.15s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-5 {
+        transition-delay: 0.25s;
+      }
+      .volver {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #00e5ff;
+        text-decoration: none;
+        font-size: 16px;
+        transition: 0.3s;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        z-index: 10;
+      }
+      .volver:hover {
+        color: #ff00ff;
+      }
+      footer {
+        background: #000;
+        text-align: center;
+        padding: 25px;
+        margin-top: 0;
+      }
+      footer p {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+      }
+      @media (max-width: 768px) {
+        .page-hero {
+          min-height: 45vh;
+          padding: 120px 20px 40px;
+        }
+        .testimonios-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-stats {
+          gap: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tabs">
+      <a href="index.html" class="tab-btn">Inicio</a>
+      <a href="eventos.html" class="tab-btn">Eventos</a>
+      <a href="entradas.html" class="tab-btn">Entradas</a>
+      <a href="reservas.html" class="tab-btn">Reservas</a>
+      <a href="bebidas.html" class="tab-btn">Bebidas</a>
+      <a href="carrito.html" class="tab-btn"
+        >Carrito <span class="cart-count">0</span></a
+      >
+      <a href="transporte.html" class="tab-btn">Transporte</a>
+      <a href="galeria.html" class="tab-btn">Momentos</a>
+    </div>
+    <div class="tabs secundarias">
+      <a href="ubicacion.html" class="tab-btn secundario">Ubicación</a>
+      <a href="clientes.html" class="tab-btn secundario activo">Clientes</a>
+      <a href="ventas.html" class="tab-btn secundario">Ventas</a>
+    </div>
+
+    <section class="page-hero">
+      <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge">Voces Reales</div>
+        <img src="imagenes/NIGHT ZONE LOGO.jpg" alt="Night Zone Logo" class="logo-hero-sm"><h1 class="hero-title">Clientes</h1>
+        <p class="hero-sub">Lo que dicen nuestros clientes sobre Night Zone.</p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">34</div>
+            <div class="hero-stat-label">Reseñas</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">4.7</div>
+            <div class="hero-stat-label">Calificación</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">⭐</div>
+            <div class="hero-stat-label">Promedio</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header reveal">
+        <h2 class="section-title">Testimonios</h2>
+      </div>
+      <div class="testimonios-grid">
+        <div class="testimonio-card reveal reveal-delay-1">
+          <h3>María G.</h3>
+          <p>"La mejor noche de mi vida. Música increíble y ambiente único."</p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-2">
+          <h3>Carlos M.</h3>
+          <p>"Excelente servicio VIP. Volveremos cada mes."</p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-3">
+          <h3>Andrea L.</h3>
+          <p>
+            "Los cócteles son espectaculares y el DJ siempre pone lo mejor."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-4">
+          <h3>Jorge R.</h3>
+          <p>
+            "Celebramos mi cumpleaños aquí y fue inolvidable. El staff nos trató
+            como reyes."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-5">
+          <h3>Valentina P.</h3>
+          <p>
+            "El sistema de luces y el sonido son de otro nivel. Bailé toda la
+            noche."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-1">
+          <h3>Diego H.</h3>
+          <p>
+            "Buena música, buenos tragos y mejor compañía. La atención en la
+            barra es rapidísima."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-2">
+          <h3>Sofía N.</h3>
+          <p>
+            "Fui con mis amigas y lo pasamos increíble. El transporte de regreso
+            fue muy seguro."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-3">
+          <h3>Miguel A.</h3>
+          <p>
+            "La pista de baile es enorme y nunca se siente abarrotada. El aire
+            acondicionado perfecto."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-4">
+          <h3>Camila T.</h3>
+          <p>
+            "Pedí un Bono Premium de transporte y todo funcionó perfecto. Llegué
+            y me fui sin preocupaciones."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-5">
+          <h3>Fernando L.</h3>
+          <p>
+            "Los DJs invitados son de primer nivel. La variedad de géneros
+            musicales me encantó."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-1">
+          <h3>Lucía R.</h3>
+          <p>
+            "La decoración temática de cada evento es espectacular. Muy buen
+            gusto en todo."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-2">
+          <h3>Andrés F.</h3>
+          <p>
+            "Reservé una mesa para una cita y fue todo un acierto. Ambiente
+            íntimo pero con mucha energía."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-3">
+          <h3>Gabriela M.</h3>
+          <p>
+            "Me encantó la zona de photobooth. Las fotos quedaron increíbles y
+            era gratis."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-4">
+          <h3>Ricardo S.</h3>
+          <p>
+            "La seguridad es profesional y discreta. Me sentí tranquilo toda la
+            noche."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-5">
+          <h3>Daniela C.</h3>
+          <p>
+            "Fuimos un grupo de 15 personas y todos la pasamos genial. El
+            servicio de botellas es muy recomendable."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-1">
+          <h3>Pablo K.</h3>
+          <p>
+            "Los after-hours los fines de semana son una locura. Amanecí
+            bailando."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-2">
+          <h3>Elena V.</h3>
+          <p>
+            "El mejor lugar para despedir el año. La fiesta de Año Nuevo fue
+            épica."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-3">
+          <h3>Luis V.</h3>
+          <p>
+            "La app para pedir tragos desde la mesa es una maravilla. Llegaron
+            en minutos."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-4">
+          <h3>Natalia B.</h3>
+          <p>
+            "Los precios son justos para la calidad que ofrecen. La relación
+            calidad-precio es excelente."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-5">
+          <h3>Rodrigo P.</h3>
+          <p>
+            "El bus compartido me salvó la noche. Llegué seguro a casa por solo
+            8 soles."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-1">
+          <h3>Carolina D.</h3>
+          <p>
+            "Fui sola y terminé haciendo amigos en la fila. El ambiente es muy
+            inclusivo y amigable."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-2">
+          <h3>Humberto G.</h3>
+          <p>
+            "El área de fumadores está bien equipada y con ventilación. Se
+            agradece el detalle."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-3">
+          <h3>Patricia O.</h3>
+          <p>
+            "Las promo de 2x1 en tragos antes de la 1AM es la mejor jugada.
+            Llegamos temprano y ahorramos."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-4">
+          <h3>Mauricio Z.</h3>
+          <p>
+            "El sonido envolvente es brutal. Se nota que invierten en buen
+            equipo de audio."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-5">
+          <h3>Adriana Q.</h3>
+          <p>
+            "Mi primera vez en un club así y superó todas mis expectativas. Ya
+            quiero volver."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-1">
+          <h3>Raúl T.</h3>
+          <p>
+            "El servicio de locker para guardar pertenencias es muy práctico.
+            Todo muy seguro."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-2">
+          <h3>Mónica S.</h3>
+          <p>
+            "La música en vivo los jueves es un plus enorme. Talentazo local."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-3">
+          <h3>Arturo B.</h3>
+          <p>
+            "Celebramos el cumpleaños de mi hermano y nos dieron un shot de
+            cortesía. Detalles que marcan la diferencia."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-4">
+          <h3>Renata F.</h3>
+          <p>
+            "Los baños están impecables toda la noche. Eso habla muy bien de la
+            administración."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-5">
+          <h3>Gonzalo M.</h3>
+          <p>
+            "Vengo desde hace 2 años y nunca me ha decepcionado. Siempre mejoran
+            algo."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-1">
+          <h3>Kevin J.</h3>
+          <p>
+            "La música estuvo buena pero las filas en la barra eran enormes."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-2">
+          <h3>Brenda W.</h3>
+          <p>
+            "El sonido está muy fuerte, no se podía conversar ni en la zona de
+            mesas."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-3">
+          <h3>Esteban M.</h3>
+          <p>
+            "La entrada es cara para lo que ofrecen. Los tragos deberían estar
+            incluidos."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-4">
+          <h3>Mariana L.</h3>
+          <p>
+            "El estacionamiento es muy pequeño y caro. Terminé estacionando a 3
+            cuadras."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-5">
+          <h3>Sergio C.</h3>
+          <p>
+            "La atención en la puerta fue un poco fría. El staff de seguridad
+            podría ser más amable."
+          </p>
+          <div class="testimonio-stars">⭐⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-1">
+          <h3>Ana F.</h3>
+          <p>
+            "Los baños de mujeres siempre tienen fila. Necesitan más espacio o
+            mejor organización."
+          </p>
+          <div class="testimonio-stars">⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-2">
+          <h3>Tomás H.</h3>
+          <p>
+            "La aplicación no funcionó bien para pedir tragos. Me apareció un
+            error."
+          </p>
+          <div class="testimonio-stars">⭐⭐</div>
+        </div>
+        <div class="testimonio-card reveal reveal-delay-3">
+          <h3>Ximena R.</h3>
+          <p>
+            "El bus de regreso se demoró casi 40 minutos en salir. Casi me quedo
+            dormida."
+          </p>
+          <div class="testimonio-stars">⭐⭐</div>
+        </div>
+      </div>
+    </section>
+
+    <footer><p>© 2026 NIGHT ZONE | Todos los derechos reservados</p></footer>
+    <script src="carrito.js"></script>
+    <script>
+      function revealOnScroll() {
+        const r = document.querySelectorAll(".reveal");
+        const h = window.innerHeight;
+        r.forEach((e) => {
+          if (e.getBoundingClientRect().top < h - 60)
+            e.classList.add("visible");
+        });
+      }
+      window.addEventListener("scroll", revealOnScroll);
+      window.addEventListener("load", revealOnScroll);
+    </script>
+  </body>
+</html>

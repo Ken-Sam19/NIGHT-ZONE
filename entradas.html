@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Entradas - Night Zone</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="icon" type="image/png" href="imagenes.png" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #0a0a1a;
+        color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow-x: hidden;
+      }
+      .page-hero {
+        position: relative;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 140px 20px 60px;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          #0a0a1a 0%,
+          #1a0a2e 40%,
+          #0a1a2e 100%
+        );
+      }
+      .page-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at 20% 50%,
+            rgba(0, 229, 255, 0.12) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 80% 50%,
+            rgba(255, 0, 255, 0.1) 0%,
+            transparent 50%
+          );
+        z-index: 1;
+        animation: heroPulse 6s ease-in-out infinite alternate;
+      }
+      @keyframes heroPulse {
+        0% {
+          opacity: 0.6;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      .particles {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        overflow: hidden;
+      }
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #ff00ff;
+        border-radius: 50%;
+        opacity: 0;
+        animation: particleFloat 8s infinite;
+        box-shadow:
+          0 0 6px #ff00ff,
+          0 0 12px #ff00ff;
+      }
+      .particle:nth-child(1) {
+        left: 10%;
+        animation-delay: 0s;
+        animation-duration: 7s;
+        background: #00e5ff;
+        box-shadow: 0 0 6px #00e5ff;
+      }
+      .particle:nth-child(2) {
+        left: 25%;
+        animation-delay: 1.2s;
+        animation-duration: 9s;
+        width: 3px;
+        height: 3px;
+      }
+      .particle:nth-child(3) {
+        left: 40%;
+        animation-delay: 2.5s;
+        animation-duration: 6s;
+        background: #ffd700;
+        box-shadow: 0 0 6px #ffd700;
+      }
+      .particle:nth-child(4) {
+        left: 55%;
+        animation-delay: 0.8s;
+        animation-duration: 8s;
+        width: 5px;
+        height: 5px;
+      }
+      .particle:nth-child(5) {
+        left: 70%;
+        animation-delay: 3s;
+        animation-duration: 7s;
+        background: #00e5ff;
+        box-shadow: 0 0 6px #00e5ff;
+      }
+      .particle:nth-child(6) {
+        left: 85%;
+        animation-delay: 2s;
+        animation-duration: 9s;
+        width: 3px;
+        height: 3px;
+      }
+      .particle:nth-child(7) {
+        left: 50%;
+        animation-delay: 4s;
+        animation-duration: 6s;
+        background: #ffd700;
+        box-shadow: 0 0 6px #ffd700;
+      }
+      .particle:nth-child(8) {
+        left: 15%;
+        animation-delay: 3.5s;
+        animation-duration: 8s;
+        width: 5px;
+        height: 5px;
+      }
+      .particle:nth-child(9) {
+        left: 65%;
+        animation-delay: 1.5s;
+        animation-duration: 7s;
+      }
+      .particle:nth-child(10) {
+        left: 35%;
+        animation-delay: 4.5s;
+        animation-duration: 9s;
+        width: 3px;
+        height: 3px;
+        background: #00e5ff;
+        box-shadow: 0 0 6px #00e5ff;
+      }
+      @keyframes particleFloat {
+        0% {
+          transform: translateY(100vh) scale(0);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-10vh) scale(1);
+          opacity: 0;
+        }
+      }
+      .hero-content {
+        position: relative;
+        z-index: 3;
+        max-width: 800px;
+      }
+      .hero-badge {
+        display: inline-block;
+        padding: 8px 24px;
+        border: 1px solid rgba(0, 229, 255, 0.4);
+        border-radius: 50px;
+        font-size: 13px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #00e5ff;
+        margin-bottom: 24px;
+        backdrop-filter: blur(10px);
+        background: rgba(0, 229, 255, 0.08);
+      }
+      .hero-title {
+        font-size: clamp(42px, 7vw, 80px);
+        font-weight: 900;
+        line-height: 1;
+        margin-bottom: 16px;
+        background: linear-gradient(
+          135deg,
+          #fff 0%,
+          #00e5ff 40%,
+          #ff00ff 70%,
+          #ffd700 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: heroTitle 4s ease-in-out infinite alternate;
+      }
+      @keyframes heroTitle {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+      .hero-sub {
+        font-size: clamp(16px, 2vw, 20px);
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 32px;
+        line-height: 1.6;
+      }
+      .hero-stats {
+        display: flex;
+        gap: 40px;
+        justify-content: center;
+        margin-top: 40px;
+        flex-wrap: wrap;
+      }
+      .hero-stat {
+        text-align: center;
+      }
+      .hero-stat-num {
+        font-size: 32px;
+        font-weight: 900;
+        background: linear-gradient(135deg, #00e5ff, #ff00ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .hero-stat-label {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-top: 4px;
+      }
+      .section {
+        padding: 80px 20px;
+        position: relative;
+      }
+      .section:nth-child(even) {
+        background: rgba(255, 0, 255, 0.02);
+      }
+      .section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        max-width: 600px;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 229, 255, 0.3),
+          transparent
+        );
+      }
+      .section-header {
+        max-width: 1200px;
+        margin: 0 auto 40px;
+        padding: 0 20px;
+        text-align: center;
+      }
+      .section-tag {
+        display: inline-block;
+        font-size: 12px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: #00e5ff;
+        margin-bottom: 12px;
+      }
+      .section-title {
+        font-size: clamp(28px, 4vw, 44px);
+        font-weight: 900;
+        background: linear-gradient(135deg, #fff, #00e5ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .entradas-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+        padding: 0 20px;
+      }
+      .entrada-card {
+        position: relative;
+        border-radius: 24px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        transform-style: preserve-3d;
+        perspective: 1000px;
+      }
+      .entrada-card:hover {
+        transform: translateY(-10px) rotateX(2deg);
+        border-color: rgba(0, 229, 255, 0.3);
+        box-shadow: 0 30px 80px rgba(0, 229, 255, 0.12);
+      }
+      .entrada-card-img {
+        height: 180px;
+        overflow: hidden;
+        position: relative;
+      }
+      .entrada-card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.7s;
+      }
+      .entrada-card:hover .entrada-card-img img {
+        transform: scale(1.1);
+      }
+      .entrada-card-img::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50%;
+        background: linear-gradient(transparent, rgba(10, 10, 26, 0.95));
+      }
+      .entrada-card-body {
+        padding: 20px 22px 22px;
+        position: relative;
+        z-index: 1;
+      }
+      .entrada-card-body h3 {
+        font-size: 20px;
+        font-weight: 800;
+        margin-bottom: 6px;
+        color: #fff;
+        transition: 0.3s;
+      }
+      .entrada-card:hover .entrada-card-body h3 {
+        background: linear-gradient(135deg, #00e5ff, #ff00ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .entrada-card-body p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.5;
+        margin-bottom: 12px;
+      }
+      .entrada-card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+      .entrada-card-precio {
+        font-size: 28px;
+        font-weight: 900;
+        color: #ff00ff;
+      }
+      .entrada-card-btn {
+        padding: 11px 22px;
+        border: none;
+        border-radius: 50px;
+        background: linear-gradient(135deg, #00e5ff, #0099cc);
+        color: #000;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.3s;
+        white-space: nowrap;
+      }
+      .entrada-card-btn:hover {
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 4px 20px rgba(0, 229, 255, 0.4);
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+      .reveal-delay-5 {
+        transition-delay: 0.5s;
+      }
+      .volver {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #00e5ff;
+        text-decoration: none;
+        font-size: 16px;
+        transition: 0.3s;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        z-index: 10;
+      }
+      .volver:hover {
+        color: #ff00ff;
+      }
+      footer {
+        background: #000;
+        text-align: center;
+        padding: 25px;
+        margin-top: 0;
+      }
+      footer p {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+      }
+      @media (max-width: 768px) {
+        .page-hero {
+          min-height: 60vh;
+          padding: 120px 20px 40px;
+        }
+        .entradas-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-stats {
+          gap: 24px;
+        }
+      }
+      @media (max-width: 480px) {
+        .entradas-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      #form-vip input,
+      #form-entrada input,
+      #form-entrada textarea {
+        width: 100%;
+        padding: 14px 18px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        outline: none;
+        transition: 0.3s;
+        box-sizing: border-box;
+      }
+      #form-vip input:focus,
+      #form-entrada input:focus,
+      #form-entrada textarea:focus {
+        background: rgba(255, 255, 255, 0.18);
+        box-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
+      }
+      .cards {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+        margin-top: 40px;
+      }
+      .categoria-titulo {
+        font-size: 34px;
+        color: #ff00ff;
+        margin: 60px 0 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tabs">
+      <a href="index.html" class="tab-btn">Inicio</a>
+      <a href="eventos.html" class="tab-btn">Eventos</a>
+      <a href="entradas.html" class="tab-btn activo">Entradas</a>
+      <a href="reservas.html" class="tab-btn">Reservas</a>
+      <a href="bebidas.html" class="tab-btn">Bebidas</a>
+      <a href="carrito.html" class="tab-btn"
+        >Carrito <span class="cart-count">0</span></a
+      >
+      <a href="transporte.html" class="tab-btn">Transporte</a>
+      <a href="galeria.html" class="tab-btn">Momentos</a>
+    </div>
+    <div class="tabs secundarias">
+      <a href="ubicacion.html" class="tab-btn secundario">Ubicación</a>
+      <a href="clientes.html" class="tab-btn secundario">Clientes</a>
+      <a href="ventas.html" class="tab-btn secundario">Ventas</a>
+    </div>
+
+    <section class="page-hero">
+      <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge">Acceso Garantizado</div>
+        <img src="imagenes/NIGHT ZONE LOGO.jpg" alt="Night Zone Logo" class="logo-hero-sm"><h1 class="hero-title">Entradas</h1>
+        <p class="hero-sub">
+          Elige la entrada perfecta para tu noche.<br />Desde lo básico hasta lo
+          más exclusivo.
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">S/10</div>
+            <div class="hero-stat-label">Desde</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">4</div>
+            <div class="hero-stat-label">Categorías</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">15+</div>
+            <div class="hero-stat-label">Opciones</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header reveal">
+        <div class="section-tag">Acceso</div>
+        <h2 class="section-title">Entradas Individuales</h2>
+      </div>
+      <div class="entradas-grid">
+        <div class="entrada-card reveal reveal-delay-1">
+          <div class="entrada-card-img">
+            <img
+              src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&h=250&fit=crop"
+              alt="Entrada Normal"
+              loading="lazy"
+            />
+          </div>
+          <div class="entrada-card-body">
+            <h3>Entrada Normal</h3>
+            <p>Acceso a pista de baile y barra general.</p>
+            <div class="entrada-card-footer">
+              <span class="entrada-card-precio">S/10</span
+              ><button class="entrada-card-btn">Comprar</button>
+            </div>
+          </div>
+        </div>
+        <div class="entrada-card reveal reveal-delay-2">
+          <div class="entrada-card-img">
+            <img
+              src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=250&fit=crop"
+              alt="Entrada VIP"
+              loading="lazy"
+            />
+          </div>
+          <div class="entrada-card-body">
+            <h3>Entrada VIP</h3>
+            <p>Zona VIP, mesa reservada y 1 bebida de cortesía.</p>
+            <div class="entrada-card-footer">
+              <span class="entrada-card-precio">S/30</span
+              ><button class="entrada-card-btn">Comprar</button>
+            </div>
+          </div>
+        </div>
+        <div class="entrada-card reveal reveal-delay-3">
+          <div class="entrada-card-img">
+            <img
+              src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&h=250&fit=crop"
+              alt="VIP Premium"
+              loading="lazy"
+            />
+          </div>
+          <div class="entrada-card-body">
+            <h3>VIP Premium</h3>
+            <p>VIP+ con mesa exclusiva, barra libre y entrada prioritaria.</p>
+            <div class="entrada-card-footer">
+              <span class="entrada-card-precio">S/60</span
+              ><button class="entrada-card-btn">Comprar</button>
+            </div>
+          </div>
+        </div>
+        <div class="entrada-card reveal reveal-delay-4">
+          <div class="entrada-card-img">
+            <img
+              src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=250&fit=crop"
+              alt="VIP Platinum"
+              loading="lazy"
+            />
+          </div>
+          <div class="entrada-card-body">
+            <h3>VIP Platinum</h3>
+            <p>Botella de champagne, camarero personal y after party.</p>
+            <div class="entrada-card-footer">
+              <span class="entrada-card-precio">S/120</span
+              ><button class="entrada-card-btn">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header reveal">
+        <div class="section-tag">Grupos</div>
+        <h2 class="section-title">Grupos y Mesas</h2>
+      </div>
+      <div class="entradas-grid">
+        <div class="entrada-card reveal reveal-delay-1">
+          <div class="entrada-card-img">
+            <img
+              src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=400&h=250&fit=crop"
+              alt="Mesa para 2"
+              loading="lazy"
+            />
+          </div>
+          <div class="entrada-card-body">
+            <h3>Mesa para 2</h3>
+            <p>Mesa para 2 personas con 1 botella de licor y 2 accesos VIP.</p>
+            <div class="entrada-card-footer">
+              <span class="entrada-card-precio">S/80</span
+              ><button class="entrada-card-btn">Comprar</button>
+            </div>
+          </div>
+        </div>
+        <div class="entrada-card reveal reveal-delay-2">
+          <div class="entrada-card-img">
+            <img
+              src="imagenes/mesa 4.jpg"
+              alt="Mesa 4"
+              loading="lazy"
+            />
+          </div>
+          <div class="entrada-card-body">
+            <h3>Mesa 4</h3>
+            <p>Mesa exclusiva con botella de licor premium y 4 accesos VIP.</p>
+            <div class="entrada-card-footer">
+              <span class="entrada-card-precio">S/150</span
+              ><button class="entrada-card-btn">Comprar</button>
+            </div>
+          </div>
+        </div>
+        <div class="entrada-card reveal reveal-delay-3">
+          <div class="entrada-card-img">
+            <img
+              src="https://images.unsplash.com/photo-1575444758702-4a6b9222336e?w=400&h=250&fit=crop"
+              alt="Mesa VIP para 6"
+              loading="lazy"
+            />
+          </div>
+          <div class="entrada-card-body">
+            <h3>Mesa VIP para 6</h3>
+            <p>2 botellas premium, mixers y acceso prioritario para 6.</p>
+            <div class="entrada-card-footer">
+              <span class="entrada-card-precio">S/280</span
+              ><button class="entrada-card-btn">Comprar</button>
+            </div>
+          </div>
+        </div>
+        <div class="entrada-card reveal reveal-delay-4">
+          <div class="entrada-card-img">
+            <img
+              src="https://images.unsplash.com/photo-1575444758702-4a6b9222336e?w=400&h=250&fit=crop"
+              alt="Zona Privada"
+              loading="lazy"
+            />
+          </div>
+          <div class="entrada-card-body">
+            <h3>Zona Privada (10 pers)</h3>
+            <p>3 botellas premium, camarero personal y seguridad privada.</p>
+            <div class="entrada-card-footer">
+              <span class="entrada-card-precio">S/500</span
+              ><button class="entrada-card-btn">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header reveal">
+        <div class="section-tag">Pases</div>
+        <h2 class="section-title">Abonos y Pases</h2>
+      </div>
+      <div
+        class="entradas-grid"
+        style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr))"
+      >
+        <div class="entrada-card reveal reveal-delay-1">
+          <div class="entrada-card-img">
+            <img
+              src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400&h=250&fit=crop"
+              alt="Pase Temporada"
+              loading="lazy"
+            />
+          </div>
+          <div class="entrada-card-body">
+            <h3>Pase de Temporada</h3>
+            <p>
+              Acceso a todos los eventos del mes. Incluye 1 bebida por evento.
+            </p>
+            <div class="entrada-card-footer">
+              <span class="entrada-card-precio">S/80</span
+              ><button class="entrada-card-btn">Comprar</button>
+            </div>
+          </div>
+        </div>
+        <div class="entrada-card reveal reveal-delay-2">
+          <div class="entrada-card-img">
+            <img
+              src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=250&fit=crop"
+              alt="VIP Temporada"
+              loading="lazy"
+            />
+          </div>
+          <div class="entrada-card-body">
+            <h3>VIP Temporada Completa</h3>
+            <p>Acceso VIP a todos los eventos del mes con barra libre.</p>
+            <div class="entrada-card-footer">
+              <span class="entrada-card-precio">S/200</span
+              ><button class="entrada-card-btn">Comprar</button>
+            </div>
+          </div>
+        </div>
+        <div class="entrada-card reveal reveal-delay-3">
+          <div class="entrada-card-img">
+            <img
+              src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&h=250&fit=crop"
+              alt="Pase Anual"
+              loading="lazy"
+            />
+          </div>
+          <div class="entrada-card-body">
+            <h3>Pase Anual</h3>
+            <p>
+              Acceso ilimitado a todos los eventos del año + 2 invitaciones VIP.
+            </p>
+            <div class="entrada-card-footer">
+              <span class="entrada-card-precio">S/600</span
+              ><button class="entrada-card-btn">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header reveal">
+        <div class="section-tag">Experiencias</div>
+        <h2 class="section-title">Experiencias Especiales</h2>
+      </div>
+      <div
+        class="entradas-grid"
+        style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr))"
+      >
+        <div class="entrada-card reveal reveal-delay-1">
+          <div class="entrada-card-img">
+            <img
+              src="https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=400&h=250&fit=crop"
+              alt="Cumpleaños VIP"
+              loading="lazy"
+            />
+          </div>
+          <div class="entrada-card-body">
+            <h3>Cumpleaños VIP</h3>
+            <p>
+              Mesa para 6, torta, champagne, decoración y mensaje en pantalla.
+            </p>
+            <div class="entrada-card-footer">
+              <span class="entrada-card-precio">S/350</span
+              ><button class="entrada-card-btn">Comprar</button>
+            </div>
+          </div>
+        </div>
+        <div class="entrada-card reveal reveal-delay-2">
+          <div class="entrada-card-img">
+            <img
+              src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=250&fit=crop"
+              alt="After Party"
+              loading="lazy"
+            />
+          </div>
+          <div class="entrada-card-body">
+            <h3>After Party Pass</h3>
+            <p>Acceso al after party exclusivo después del evento principal.</p>
+            <div class="entrada-card-footer">
+              <span class="entrada-card-precio">S/25</span
+              ><button class="entrada-card-btn">Comprar</button>
+            </div>
+          </div>
+        </div>
+        <div class="entrada-card reveal reveal-delay-3">
+          <div class="entrada-card-img">
+            <img
+              src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=400&h=250&fit=crop"
+              alt="Meet & Greet"
+              loading="lazy"
+            />
+          </div>
+          <div class="entrada-card-body">
+            <h3>Meet & Greet</h3>
+            <p>Conoce al artista invitado, foto y autógrafo incluido.</p>
+            <div class="entrada-card-footer">
+              <span class="entrada-card-precio">S/100</span
+              ><button class="entrada-card-btn">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer><p>© 2026 NIGHT ZONE | Todos los derechos reservados</p></footer>
+    <script src="carrito.js"></script>
+    <script>
+      function revealOnScroll() {
+        const r = document.querySelectorAll(".reveal");
+        const h = window.innerHeight;
+        r.forEach((e) => {
+          if (e.getBoundingClientRect().top < h - 60)
+            e.classList.add("visible");
+        });
+      }
+      window.addEventListener("scroll", revealOnScroll);
+      window.addEventListener("load", revealOnScroll);
+      document.querySelectorAll(".entrada-card-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const card =
+            this.closest(".entrada-card-body") || this.closest(".entrada-card");
+          const prod = card.querySelector("h3")?.textContent;
+          const precioEl = card.querySelector(".entrada-card-precio");
+          const precio = precioEl
+            ? parseFloat(
+                precioEl.textContent.replace("S/", "").replace(",", ""),
+              )
+            : 0;
+          if (prod) agregarCarrito(prod, precio);
+        });
+      });
+    </script>
+  </body>
+</html>

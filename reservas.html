@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Reservas - Night Zone</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="icon" type="image/png" href="imagenes.png" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #0a0a1a;
+        color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow-x: hidden;
+      }
+      .page-hero {
+        position: relative;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 140px 20px 60px;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          #0a0a1a 0%,
+          #0a1a2e 40%,
+          #1a0a2e 100%
+        );
+      }
+      .page-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at 20% 50%,
+            rgba(255, 215, 0, 0.12) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 80% 50%,
+            rgba(255, 0, 255, 0.1) 0%,
+            transparent 50%
+          );
+        z-index: 1;
+        animation: heroPulse 6s ease-in-out infinite alternate;
+      }
+      @keyframes heroPulse {
+        0% {
+          opacity: 0.6;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      .particles {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        overflow: hidden;
+      }
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #ffd700;
+        border-radius: 50%;
+        opacity: 0;
+        animation: particleFloat 8s infinite;
+        box-shadow:
+          0 0 6px #ffd700,
+          0 0 12px #ffd700;
+      }
+      .particle:nth-child(1) {
+        left: 10%;
+        animation-delay: 0s;
+        animation-duration: 7s;
+        background: #ff00ff;
+        box-shadow: 0 0 6px #ff00ff;
+      }
+      .particle:nth-child(2) {
+        left: 25%;
+        animation-delay: 1.2s;
+        animation-duration: 9s;
+        width: 3px;
+        height: 3px;
+      }
+      .particle:nth-child(3) {
+        left: 40%;
+        animation-delay: 2.5s;
+        animation-duration: 6s;
+        background: #00e5ff;
+        box-shadow: 0 0 6px #00e5ff;
+      }
+      .particle:nth-child(4) {
+        left: 55%;
+        animation-delay: 0.8s;
+        animation-duration: 8s;
+        width: 5px;
+        height: 5px;
+      }
+      .particle:nth-child(5) {
+        left: 70%;
+        animation-delay: 3s;
+        animation-duration: 7s;
+      }
+      .particle:nth-child(6) {
+        left: 85%;
+        animation-delay: 2s;
+        animation-duration: 9s;
+        width: 3px;
+        height: 3px;
+        background: #00e5ff;
+        box-shadow: 0 0 6px #00e5ff;
+      }
+      .particle:nth-child(7) {
+        left: 50%;
+        animation-delay: 4s;
+        animation-duration: 6s;
+      }
+      .particle:nth-child(8) {
+        left: 15%;
+        animation-delay: 3.5s;
+        animation-duration: 8s;
+        width: 5px;
+        height: 5px;
+        background: #ff00ff;
+        box-shadow: 0 0 6px #ff00ff;
+      }
+      @keyframes particleFloat {
+        0% {
+          transform: translateY(100vh) scale(0);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-10vh) scale(1);
+          opacity: 0;
+        }
+      }
+      .hero-content {
+        position: relative;
+        z-index: 3;
+        max-width: 800px;
+      }
+      .hero-badge {
+        display: inline-block;
+        padding: 8px 24px;
+        border: 1px solid rgba(255, 215, 0, 0.4);
+        border-radius: 50px;
+        font-size: 13px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #ffd700;
+        margin-bottom: 24px;
+        backdrop-filter: blur(10px);
+        background: rgba(255, 215, 0, 0.08);
+      }
+      .hero-title {
+        font-size: clamp(42px, 7vw, 80px);
+        font-weight: 900;
+        line-height: 1;
+        margin-bottom: 16px;
+        background: linear-gradient(135deg, #fff 0%, #ffd700 40%, #ff00ff 70%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: heroTitle 4s ease-in-out infinite alternate;
+      }
+      @keyframes heroTitle {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+      .hero-sub {
+        font-size: clamp(16px, 2vw, 20px);
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 32px;
+        line-height: 1.6;
+      }
+      .section {
+        padding: 80px 20px;
+        position: relative;
+      }
+      .section-header {
+        max-width: 800px;
+        margin: 0 auto 40px;
+        text-align: center;
+      }
+      .section-title {
+        font-size: clamp(28px, 4vw, 44px);
+        font-weight: 900;
+        background: linear-gradient(135deg, #fff, #ffd700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .reserva-modern {
+        max-width: 600px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 32px;
+        padding: 44px 36px;
+        border: 1px solid rgba(255, 215, 0, 0.1);
+        backdrop-filter: blur(20px);
+      }
+      .reserva-modern .input-group {
+        margin-bottom: 18px;
+        text-align: left;
+      }
+      .reserva-modern label {
+        display: block;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 6px;
+      }
+      .reserva-modern input,
+      .reserva-modern select {
+        width: 100%;
+        padding: 16px 20px;
+        border: none;
+        border-radius: 14px;
+        font-size: 16px;
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+        outline: none;
+        transition: 0.3s;
+        box-sizing: border-box;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .reserva-modern input:focus,
+      .reserva-modern select:focus {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 215, 0, 0.3);
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.08);
+      }
+      .reserva-modern select option {
+        background: #1a1a2e;
+        color: #fff;
+      }
+      .reserva-btn {
+        width: 100%;
+        padding: 18px;
+        border: none;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #ffd700, #ff8c00);
+        color: #000;
+        font-size: 18px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: 0.4s;
+        margin-top: 8px;
+        box-shadow: 0 4px 30px rgba(255, 215, 0, 0.25);
+      }
+      .reserva-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 50px rgba(255, 215, 0, 0.4);
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .volver {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #00e5ff;
+        text-decoration: none;
+        font-size: 16px;
+        transition: 0.3s;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        z-index: 10;
+      }
+      .volver:hover {
+        color: #ff00ff;
+      }
+      footer {
+        background: #000;
+        text-align: center;
+        padding: 25px;
+        margin-top: 0;
+      }
+      footer p {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+      }
+      @media (max-width: 768px) {
+        .page-hero {
+          min-height: 60vh;
+          padding: 120px 20px 40px;
+        }
+        .reserva-modern {
+          padding: 30px 20px;
+        }
+      }
+      .contenido {
+        padding: 130px 40px 60px;
+        text-align: center;
+        min-height: 50vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tabs">
+      <a href="index.html" class="tab-btn">Inicio</a>
+      <a href="eventos.html" class="tab-btn">Eventos</a>
+      <a href="entradas.html" class="tab-btn">Entradas</a>
+      <a href="reservas.html" class="tab-btn activo">Reservas</a>
+      <a href="bebidas.html" class="tab-btn">Bebidas</a>
+      <a href="carrito.html" class="tab-btn"
+        >Carrito <span class="cart-count">0</span></a
+      >
+      <a href="transporte.html" class="tab-btn">Transporte</a>
+      <a href="galeria.html" class="tab-btn">Momentos</a>
+    </div>
+    <div class="tabs secundarias">
+      <a href="ubicacion.html" class="tab-btn secundario">Ubicación</a>
+      <a href="clientes.html" class="tab-btn secundario">Clientes</a>
+      <a href="ventas.html" class="tab-btn secundario">Ventas</a>
+    </div>
+
+    <section class="page-hero">
+      <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge">Reserva tu Noche</div>
+        <img src="imagenes/NIGHT ZONE LOGO.jpg" alt="Night Zone Logo" class="logo-hero-sm"><h1 class="hero-title">Reservas</h1>
+        <p class="hero-sub">
+          Asegura tu mesa o zona privada para una noche inolvidable en Night
+          Zone.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header reveal">
+        <h2 class="section-title">Haz tu Reserva</h2>
+      </div>
+      <div class="reserva-modern reveal">
+        <form id="formReserva">
+          <div class="input-group">
+            <label>Nombre Completo</label
+            ><input
+              type="text"
+              id="res-nombre"
+              placeholder="Ej: Juan Pérez"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label>Correo Electrónico</label
+            ><input
+              type="email"
+              id="res-email"
+              placeholder="correo@ejemplo.com"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label>Teléfono</label
+            ><input
+              type="tel"
+              id="res-telefono"
+              placeholder="999 999 999"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label>Tipo de Reserva</label>
+            <select id="res-tipo" required>
+              <option value>Selecciona una opción</option>
+              <option>Mesa estándar (2 pers)</option>
+              <option>Mesa VIP (4 pers)</option>
+              <option>Zona privada (8 pers)</option>
+              <option>Evento corporativo</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Fecha del Evento</label
+            ><input type="date" id="res-fecha" required />
+          </div>
+          <button
+            type="button"
+            class="reserva-btn"
+            onclick="abrirModalPagoReserva()"
+          >
+            Reservar Ahora →
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <footer><p>© 2026 NIGHT ZONE | Todos los derechos reservados</p></footer>
+    <script src="carrito.js"></script>
+
+    <div id="modal-pago-reserva" class="modal hidden">
+      <div class="modal-contenido">
+        <span class="modal-cerrar" onclick="cerrarModalReserva()">&times;</span>
+        <h2>Pagar Reserva</h2>
+        <form id="form-pago-reserva" onsubmit="procesarPagoReserva(event)">
+          <h3>Resumen de Reserva</h3>
+          <div id="resumen-reserva" class="resumen-reserva">
+            <p><strong>Nombre:</strong> <span id="rr-nombre"></span></p>
+            <p><strong>Tipo:</strong> <span id="rr-tipo"></span></p>
+            <p><strong>Fecha:</strong> <span id="rr-fecha"></span></p>
+          </div>
+          <h3>Método de Pago</h3>
+          <div class="metodos-pago">
+            <label class="metodo-pago"
+              ><input
+                type="radio"
+                name="metodo-pago-reserva"
+                value="yape"
+                required
+              /><span class="metodo-icono"
+                ><img
+                  src="imagenes/pagos/yape.png"
+                  alt="Yape"
+                  onerror="this.style.display = 'none'"
+                />
+                Yape</span
+              ></label
+            >
+            <label class="metodo-pago"
+              ><input
+                type="radio"
+                name="metodo-pago-reserva"
+                value="plin"
+                required
+              /><span class="metodo-icono"
+                ><img
+                  src="imagenes/pagos/plin.png"
+                  alt="Plin"
+                  onerror="this.style.display = 'none'"
+                />
+                Plin</span
+              ></label
+            >
+            <label class="metodo-pago"
+              ><input
+                type="radio"
+                name="metodo-pago-reserva"
+                value="tarjeta"
+                required
+              /><span class="metodo-icono">💳 Tarjeta</span></label
+            >
+            <label class="metodo-pago"
+              ><input
+                type="radio"
+                name="metodo-pago-reserva"
+                value="efectivo"
+                required
+              /><span class="metodo-icono">💵 Efectivo</span></label
+            >
+            <label class="metodo-pago"
+              ><input
+                type="radio"
+                name="metodo-pago-reserva"
+                value="transferencia"
+                required
+              /><span class="metodo-icono">🏦 Transferencia</span></label
+            >
+            <label class="metodo-pago lemon-card"
+              ><input
+                type="radio"
+                name="metodo-pago-reserva"
+                value="lemon"
+                required
+              /><span class="metodo-icono"
+                >🍋 Lemon 🎉
+                <span class="dto-marquee"
+                  >10% <span class="dto-word">DESCUENTO</span></span
+                ></span
+              ></label
+            >
+          </div>
+          <div id="extra-tarjeta-reserva" class="extra-pago hidden">
+            <h3>Datos de la Tarjeta</h3>
+            <label>Número de tarjeta</label>
+            <input
+              type="text"
+              name="tarjeta-numero"
+              placeholder="1234 5678 9012 3456"
+              maxlength="19"
+              oninput="
+                this.value = this.value
+                  .replace(/\D/g, '')
+                  .replace(/(.{4})/g, '$1 ')
+                  .trim()
+              "
+            />
+            <div class="tarjeta-fila">
+              <div>
+                <label>Vencimiento</label
+                ><input
+                  type="text"
+                  name="tarjeta-vto"
+                  placeholder="MM/AA"
+                  maxlength="5"
+                  oninput="
+                    this.value = this.value
+                      .replace(/\D/g, '')
+                      .replace(/^(\d{2})/, '$1/')
+                      .trim()
+                  "
+                />
+              </div>
+              <div>
+                <label>CVV</label
+                ><input
+                  type="text"
+                  name="tarjeta-cvv"
+                  placeholder="123"
+                  maxlength="4"
+                  oninput="this.value = this.value.replace(/\D/g, '')"
+                />
+              </div>
+            </div>
+            <label>Titular</label
+            ><input
+              type="text"
+              name="tarjeta-titular"
+              placeholder="Nombre del titular"
+            />
+          </div>
+          <div id="extra-transferencia-reserva" class="extra-pago hidden">
+            <h3>Datos de Transferencia</h3>
+            <label>Cuenta bancaria / CCI</label
+            ><input
+              type="text"
+              name="cuenta-numero"
+              placeholder="Ingrese su número de cuenta o CCI"
+            />
+          </div>
+          <div id="extra-yape-reserva" class="extra-pago hidden">
+            <h3>Paga con Yape</h3>
+            <div class="qr-container">
+              <img src="imagenes/pagos/yape-qr.png" alt="Yape QR" />
+              <p>Escanea este código QR con tu app Yape para pagar</p>
+            </div>
+          </div>
+          <div id="extra-plin-reserva" class="extra-pago hidden">
+            <h3>Paga con Plin</h3>
+            <div class="qr-container">
+              <img src="imagenes/pagos/plin-qr.png" alt="Plin QR" />
+              <p>Escanea este código QR con tu app Plin para pagar</p>
+            </div>
+          </div>
+          <div id="extra-efectivo-reserva" class="extra-pago hidden">
+            <h3>Pago en Efectivo</h3>
+            <div class="efectivo-container">
+              <p>Acérquese a la caja con este código:</p>
+              <div class="codigo-efectivo" id="codigo-efectivo-reserva">
+                NZ-XXXXX
+              </div>
+            </div>
+          </div>
+          <div id="resumen-pago-reserva" class="resumen-pago">
+            <p>Total a pagar: <strong id="reserva-precio">S/50</strong></p>
+          </div>
+          <button type="submit" class="btn-pagar">Pagar Reserva</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const preciosReserva = {
+        "Mesa estándar (2 pers)": 50,
+        "Mesa VIP (4 pers)": 120,
+        "Zona privada (8 pers)": 300,
+        "Evento corporativo": 500,
+      };
+      function abrirModalPagoReserva() {
+        const f = document.getElementById("formReserva");
+        const n = document.getElementById("res-nombre").value.trim(),
+          e = document.getElementById("res-email").value.trim(),
+          t = document.getElementById("res-telefono").value.trim(),
+          p = document.getElementById("res-tipo").value,
+          d = document.getElementById("res-fecha").value;
+        if (!n || !e || !t || !p || !d) {
+          alert("Complete todos los campos del formulario.");
+          return;
+        }
+        document.getElementById("rr-nombre").textContent = n;
+        document.getElementById("rr-tipo").textContent = p;
+        document.getElementById("rr-fecha").textContent = d;
+        document.getElementById("reserva-precio").textContent =
+          "S/" + (preciosReserva[p] || 50);
+        document
+          .getElementById("modal-pago-reserva")
+          .classList.remove("hidden");
+        document
+          .querySelectorAll("#form-pago-reserva .extra-pago")
+          .forEach((el) => el.classList.add("hidden"));
+        document.getElementById("codigo-efectivo-reserva").textContent =
+          generarCodigoEfectivo();
+      }
+      function cerrarModalReserva() {
+        document.getElementById("modal-pago-reserva").classList.add("hidden");
+        document
+          .querySelectorAll("#form-pago-reserva .extra-pago")
+          .forEach((el) => el.classList.add("hidden"));
+      }
+      function mostrarSeccionReserva(m) {
+        document
+          .querySelectorAll("#form-pago-reserva .extra-pago")
+          .forEach((el) => el.classList.add("hidden"));
+        const s = document.getElementById("extra-" + m + "-reserva");
+        if (s) {
+          s.classList.remove("hidden");
+          if (m === "efectivo")
+            document.getElementById("codigo-efectivo-reserva").textContent =
+              generarCodigoEfectivo();
+        }
+      }
+      document
+        .querySelectorAll('input[name="metodo-pago-reserva"]')
+        .forEach((r) =>
+          r.addEventListener("change", function () {
+            mostrarSeccionReserva(this.value);
+          }),
+        );
+      function procesarPagoReserva(e) {
+        e.preventDefault();
+        const form = e.target,
+          metodo = form["metodo-pago-reserva"].value,
+          tipo = document.getElementById("res-tipo").value,
+          precio = preciosReserva[tipo] || 50,
+          nombre = document.getElementById("rr-nombre").textContent,
+          fecha = document.getElementById("rr-fecha").textContent;
+        let msj = "";
+        if (metodo === "tarjeta") {
+          const num = form["tarjeta-numero"].value;
+          if (!num) {
+            alert("Ingrese el número de tarjeta");
+            return;
+          }
+          msj = "\nTarjeta: ****" + num.slice(-4);
+        } else if (metodo === "transferencia") {
+          const c = form["cuenta-numero"].value;
+          if (!c) {
+            alert("Ingrese el número de cuenta");
+            return;
+          }
+          msj = "\nCuenta: " + c;
+        } else if (metodo === "efectivo") {
+          msj =
+            "\nCódigo de caja: " +
+            (document.getElementById("codigo-efectivo-reserva").textContent ||
+              "NZ-XXXXX");
+        } else if (metodo === "yape" || metodo === "plin") {
+          msj = "\nPago mediante QR - esperando confirmación";
+        }
+        alert(
+          "¡Reserva realizada con éxito!\n\nCliente: " +
+            nombre +
+            "\nTipo: " +
+            tipo +
+            "\nFecha: " +
+            fecha +
+            "\nMétodo de pago: " +
+            metodo +
+            "\nTotal: S/" +
+            precio +
+            msj +
+            "\n\nTe esperamos en Night Zone.",
+        );
+        cerrarModalReserva();
+        document.getElementById("formReserva").reset();
+      }
+
+      function revealOnScroll() {
+        const r = document.querySelectorAll(".reveal");
+        const h = window.innerHeight;
+        r.forEach((e) => {
+          if (e.getBoundingClientRect().top < h - 60)
+            e.classList.add("visible");
+        });
+      }
+      window.addEventListener("scroll", revealOnScroll);
+      window.addEventListener("load", revealOnScroll);
+    </script>
+  </body>
+</html>

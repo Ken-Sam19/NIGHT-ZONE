@@ -1,0 +1,1044 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Transporte - Night Zone</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="icon" type="image/png" href="imagenes.png" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #0a0a1a;
+        color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow-x: hidden;
+      }
+      .page-hero {
+        position: relative;
+        min-height: 65vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 140px 20px 60px;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          #0a0a1a 0%,
+          #0a1a2e 40%,
+          #1a0a2e 100%
+        );
+      }
+      .page-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at 20% 50%,
+            rgba(0, 229, 255, 0.12) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 80% 50%,
+            rgba(255, 0, 255, 0.1) 0%,
+            transparent 50%
+          );
+        z-index: 1;
+        animation: heroPulse 6s ease-in-out infinite alternate;
+      }
+      @keyframes heroPulse {
+        0% {
+          opacity: 0.6;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      .particles {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        overflow: hidden;
+      }
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #00e5ff;
+        border-radius: 50%;
+        opacity: 0;
+        animation: particleFloat 8s infinite;
+        box-shadow:
+          0 0 6px #00e5ff,
+          0 0 12px #00e5ff;
+      }
+      .particle:nth-child(1) {
+        left: 10%;
+        animation-delay: 0s;
+        animation-duration: 7s;
+        background: #ff00ff;
+        box-shadow: 0 0 6px #ff00ff;
+      }
+      .particle:nth-child(2) {
+        left: 25%;
+        animation-delay: 1.2s;
+        animation-duration: 9s;
+        width: 3px;
+        height: 3px;
+      }
+      .particle:nth-child(3) {
+        left: 40%;
+        animation-delay: 2.5s;
+        animation-duration: 6s;
+      }
+      .particle:nth-child(4) {
+        left: 55%;
+        animation-delay: 0.8s;
+        animation-duration: 8s;
+        width: 5px;
+        height: 5px;
+        background: #ffd700;
+        box-shadow: 0 0 6px #ffd700;
+      }
+      .particle:nth-child(5) {
+        left: 70%;
+        animation-delay: 3s;
+        animation-duration: 7s;
+      }
+      .particle:nth-child(6) {
+        left: 85%;
+        animation-delay: 2s;
+        animation-duration: 9s;
+        width: 3px;
+        height: 3px;
+        background: #ff00ff;
+        box-shadow: 0 0 6px #ff00ff;
+      }
+      .particle:nth-child(7) {
+        left: 50%;
+        animation-delay: 4s;
+        animation-duration: 6s;
+        width: 5px;
+        height: 5px;
+      }
+      .particle:nth-child(8) {
+        left: 15%;
+        animation-delay: 3.5s;
+        animation-duration: 8s;
+        background: #ffd700;
+        box-shadow: 0 0 6px #ffd700;
+      }
+      @keyframes particleFloat {
+        0% {
+          transform: translateY(100vh) scale(0);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-10vh) scale(1);
+          opacity: 0;
+        }
+      }
+      .hero-content {
+        position: relative;
+        z-index: 3;
+        max-width: 800px;
+      }
+      .hero-badge {
+        display: inline-block;
+        padding: 8px 24px;
+        border: 1px solid rgba(0, 229, 255, 0.4);
+        border-radius: 50px;
+        font-size: 13px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #00e5ff;
+        margin-bottom: 24px;
+        backdrop-filter: blur(10px);
+        background: rgba(0, 229, 255, 0.08);
+      }
+      .hero-title {
+        font-size: clamp(42px, 7vw, 80px);
+        font-weight: 900;
+        line-height: 1;
+        margin-bottom: 16px;
+        background: linear-gradient(135deg, #fff 0%, #00e5ff 40%, #ff00ff 70%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: heroTitle 4s ease-in-out infinite alternate;
+      }
+      @keyframes heroTitle {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+      .hero-sub {
+        font-size: clamp(16px, 2vw, 20px);
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 10px;
+      }
+      .section {
+        padding: 80px 20px;
+        position: relative;
+      }
+      .section:nth-child(even) {
+        background: rgba(255, 0, 255, 0.02);
+      }
+      .section-header {
+        max-width: 1200px;
+        margin: 0 auto 40px;
+        padding: 0 20px;
+        text-align: center;
+      }
+      .section-tag {
+        display: inline-block;
+        font-size: 12px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: #00e5ff;
+        margin-bottom: 12px;
+      }
+      .section-title {
+        font-size: clamp(28px, 4vw, 44px);
+        font-weight: 900;
+        background: linear-gradient(135deg, #fff, #00e5ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .transporte-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+        gap: 30px;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .transporte-card {
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 28px;
+        padding: 40px 32px;
+        transition: 0.5s;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        position: relative;
+        overflow: hidden;
+      }
+      .transporte-card:hover {
+        transform: translateY(-12px);
+      }
+      .transporte-card.taxi:hover {
+        box-shadow: 0 0 60px rgba(0, 229, 255, 0.12);
+        border-color: rgba(0, 229, 255, 0.25);
+      }
+      .transporte-card.bus:hover {
+        box-shadow: 0 0 60px rgba(255, 0, 255, 0.12);
+        border-color: rgba(255, 0, 255, 0.25);
+      }
+      .transporte-icono {
+        font-size: 64px;
+        margin-bottom: 16px;
+        animation: float 3s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .transporte-card h3 {
+        font-size: 26px;
+        font-weight: 800;
+        margin-bottom: 12px;
+        color: #fff;
+      }
+      .transporte-desc {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 14px;
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+      .transporte-detalles {
+        text-align: left;
+        margin-bottom: 24px;
+      }
+      .detalle {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .detalle-icono {
+        font-size: 18px;
+        min-width: 24px;
+        text-align: center;
+      }
+      .btn-transporte {
+        padding: 16px 36px;
+        border: none;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 15px;
+        cursor: pointer;
+        transition: 0.4s;
+        display: inline-block;
+        letter-spacing: 0.5px;
+      }
+      .btn-taxi {
+        background: linear-gradient(135deg, #00e5ff, #0099cc);
+        color: #000;
+        box-shadow: 0 4px 25px rgba(0, 229, 255, 0.25);
+      }
+      .btn-taxi:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 8px 40px rgba(0, 229, 255, 0.4);
+      }
+      .btn-bus {
+        background: linear-gradient(135deg, #ff00ff, #b300b3);
+        color: #fff;
+        box-shadow: 0 4px 25px rgba(255, 0, 255, 0.25);
+      }
+      .btn-bus:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 8px 40px rgba(255, 0, 255, 0.4);
+      }
+      .bonos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 24px;
+        max-width: 960px;
+        margin: 0 auto 50px;
+        padding: 0 20px;
+      }
+      .bono-card {
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 24px;
+        padding: 32px 24px;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.4s;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        position: relative;
+        overflow: hidden;
+      }
+      .bono-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(0, 229, 255, 0.3);
+        box-shadow: 0 0 40px rgba(0, 229, 255, 0.1);
+      }
+      .bono-popular {
+        border-color: rgba(255, 0, 255, 0.2);
+        box-shadow: 0 0 30px rgba(255, 0, 255, 0.08);
+      }
+      .bono-popular:hover {
+        border-color: #ff00ff;
+        box-shadow: 0 0 50px rgba(255, 0, 255, 0.2);
+      }
+      .bono-badge {
+        position: absolute;
+        top: 12px;
+        right: -26px;
+        background: #ff00ff;
+        color: #fff;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 4px 30px;
+        transform: rotate(45deg);
+        box-shadow: 0 2px 8px rgba(255, 0, 255, 0.4);
+      }
+      .bono-icono {
+        font-size: 44px;
+        margin-bottom: 10px;
+      }
+      .bono-card h3 {
+        font-size: 18px;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+      .bono-desc {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 10px;
+      }
+      .bono-precio {
+        font-size: 32px;
+        font-weight: 900;
+        color: #00e5ff;
+        margin-bottom: 2px;
+      }
+      .bono-ahorro {
+        font-size: 12px;
+        color: #2ecc71;
+        margin-bottom: 14px;
+      }
+      .btn-bono {
+        padding: 10px 24px;
+        border: none;
+        border-radius: 50px;
+        background: linear-gradient(135deg, #ff00ff, #b300b3);
+        color: #fff;
+        font-weight: 700;
+        font-size: 13px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .btn-bono:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+      }
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 30px;
+        max-width: 900px;
+        margin: 50px auto 0;
+        padding: 0 20px;
+      }
+      .info-card {
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 24px;
+        padding: 32px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .info-card h4 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #00e5ff;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .horario-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        gap: 12px;
+      }
+      .horario-hora {
+        font-weight: 700;
+        color: #ff00ff;
+        white-space: nowrap;
+        font-size: 14px;
+      }
+      .horario-ruta {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+        text-align: right;
+      }
+      .horario-nota {
+        margin-top: 12px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.4);
+        text-align: center;
+        font-style: italic;
+      }
+      .ruta-item {
+        display: flex;
+        gap: 14px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .ruta-circulo {
+        min-width: 14px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        margin-top: 4px;
+      }
+      .ruta-norte {
+        background: #00e5ff;
+        box-shadow: 0 0 10px #00e5ff;
+      }
+      .ruta-centro {
+        background: #ff00ff;
+        box-shadow: 0 0 10px #ff00ff;
+      }
+      .ruta-sur {
+        background: #ffd700;
+        box-shadow: 0 0 10px #ffd700;
+      }
+      .ruta-item strong {
+        font-size: 14px;
+        color: #fff;
+        display: block;
+        margin-bottom: 2px;
+      }
+      .ruta-item p {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .transporte-cta {
+        max-width: 600px;
+        margin: 50px auto 0;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 24px;
+        padding: 40px;
+        border: 1px solid rgba(255, 0, 255, 0.15);
+        text-align: center;
+      }
+      .transporte-cta h3 {
+        font-size: 24px;
+        font-weight: 800;
+        margin-bottom: 10px;
+      }
+      .transporte-cta p {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 15px;
+        margin-bottom: 20px;
+      }
+      .boton {
+        display: inline-block;
+        padding: 15px 35px;
+        background: linear-gradient(135deg, #ff00ff, #b300b3);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: 700;
+        transition: 0.3s;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 25px rgba(255, 0, 255, 0.25);
+      }
+      .boton:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 40px rgba(255, 0, 255, 0.4);
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+      .volver {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #00e5ff;
+        text-decoration: none;
+        font-size: 16px;
+        transition: 0.3s;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        z-index: 10;
+      }
+      .volver:hover {
+        color: #ff00ff;
+      }
+      footer {
+        background: #000;
+        text-align: center;
+        padding: 25px;
+        margin-top: 0;
+      }
+      footer p {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+      }
+      @media (max-width: 768px) {
+        .page-hero {
+          min-height: 55vh;
+          padding: 120px 20px 40px;
+        }
+        .transporte-grid {
+          grid-template-columns: 1fr;
+        }
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .modal-campo {
+        margin-bottom: 16px;
+        text-align: left;
+      }
+      .modal-campo label {
+        display: block;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 6px;
+      }
+      .modal-campo input,
+      .modal-campo select {
+        width: 100%;
+        padding: 14px 18px;
+        border: none;
+        border-radius: 10px;
+        font-size: 15px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        outline: none;
+        transition: 0.3s;
+        box-sizing: border-box;
+      }
+      .modal-campo input:focus,
+      .modal-campo select:focus {
+        background: rgba(255, 255, 255, 0.18);
+        box-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
+      }
+      .modal-campo select option {
+        background: #1a1a2e;
+        color: #fff;
+      }
+      .modal-precio {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        margin: 16px 0 10px;
+        padding: 12px;
+        background: rgba(0, 229, 255, 0.08);
+        border-radius: 10px;
+      }
+      .modal-precio strong {
+        color: #00e5ff;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tabs">
+      <a href="index.html" class="tab-btn">Inicio</a>
+      <a href="eventos.html" class="tab-btn">Eventos</a>
+      <a href="entradas.html" class="tab-btn">Entradas</a>
+      <a href="reservas.html" class="tab-btn">Reservas</a>
+      <a href="bebidas.html" class="tab-btn">Bebidas</a>
+      <a href="carrito.html" class="tab-btn"
+        >Carrito <span class="cart-count">0</span></a
+      >
+      <a href="transporte.html" class="tab-btn activo">Transporte</a>
+      <a href="galeria.html" class="tab-btn">Momentos</a>
+    </div>
+    <div class="tabs secundarias">
+      <a href="ubicacion.html" class="tab-btn secundario">Ubicación</a>
+      <a href="clientes.html" class="tab-btn secundario">Clientes</a>
+      <a href="ventas.html" class="tab-btn secundario">Ventas</a>
+    </div>
+
+    <section class="page-hero">
+      <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge">Tu Viaje Seguro</div>
+        <img src="imagenes/NIGHT ZONE LOGO.jpg" alt="Night Zone Logo" class="logo-hero-sm"><h1 class="hero-title">Transporte</h1>
+        <p class="hero-sub">
+          Llegamos a la disco y te llevamos a casa. Seguro, rápido y cómodo.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="transporte-grid">
+        <div class="transporte-card taxi reveal reveal-delay-1">
+          <div class="transporte-icono">🚕</div>
+          <h3>Taxi Privado</h3>
+          <p class="transporte-desc">
+            Taxi personalizado que te espera en la puerta y te lleva directo a
+            tu destino.
+          </p>
+          <div class="transporte-detalles">
+            <div class="detalle">
+              <span class="detalle-icono">👤</span><span>Hasta 4 personas</span>
+            </div>
+            <div class="detalle">
+              <span class="detalle-icono">💰</span
+              ><span>Desde S/15 por persona</span>
+            </div>
+            <div class="detalle">
+              <span class="detalle-icono">⏱️</span
+              ><span>Llega en 5-10 min</span>
+            </div>
+            <div class="detalle">
+              <span class="detalle-icono">📍</span><span>Puerta a puerta</span>
+            </div>
+          </div>
+          <button class="btn-transporte btn-taxi" onclick="abrirModal('taxi')">
+            Solicitar Taxi
+          </button>
+        </div>
+        <div class="transporte-card bus reveal reveal-delay-2">
+          <div class="transporte-icono">🚌</div>
+          <h3>Bus Compartido</h3>
+          <p class="transporte-desc">
+            Bus con salida cada hora. Económico y seguro para grupos grandes.
+          </p>
+          <div class="transporte-detalles">
+            <div class="detalle">
+              <span class="detalle-icono">👥</span
+              ><span>Hasta 30 personas</span>
+            </div>
+            <div class="detalle">
+              <span class="detalle-icono">💰</span><span>S/8 por persona</span>
+            </div>
+            <div class="detalle">
+              <span class="detalle-icono">⏱️</span><span>Sale cada hora</span>
+            </div>
+            <div class="detalle">
+              <span class="detalle-icono">🗺️</span
+              ><span>3 rutas principales</span>
+            </div>
+          </div>
+          <button class="btn-transporte btn-bus" onclick="abrirModal('bus')">
+            Reservar Asiento
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header reveal">
+        <div class="section-tag">Ahorra</div>
+        <h2 class="section-title">Bonos de Transporte</h2>
+      </div>
+      <div class="bonos-grid">
+        <div
+          class="bono-card reveal reveal-delay-1"
+          onclick="abrirModal('bono-simple')"
+        >
+          <div class="bono-icono">🎟️</div>
+          <h3>Bono Simple</h3>
+          <p class="bono-desc">1 viaje en bus compartido</p>
+          <p class="bono-precio">S/7</p>
+          <p class="bono-ahorro">Ahorras S/1</p>
+          <button class="btn-bono">Comprar Bono</button>
+        </div>
+        <div
+          class="bono-card bono-popular reveal reveal-delay-2"
+          onclick="abrirModal('bono-plus')"
+        >
+          <div class="bono-badge">Más popular</div>
+          <div class="bono-icono">🎫</div>
+          <h3>Bono Plus</h3>
+          <p class="bono-desc">5 viajes en bus compartido</p>
+          <p class="bono-precio">S/30</p>
+          <p class="bono-ahorro">Ahorras S/10</p>
+          <button class="btn-bono">Comprar Bono</button>
+        </div>
+        <div
+          class="bono-card reveal reveal-delay-3"
+          onclick="abrirModal('bono-premium')"
+        >
+          <div class="bono-icono">💎</div>
+          <h3>Bono Premium</h3>
+          <p class="bono-desc">10 viajes + 1 taxi gratis</p>
+          <p class="bono-precio">S/55</p>
+          <p class="bono-ahorro">Ahorras S/25</p>
+          <button class="btn-bono">Comprar Bono</button>
+        </div>
+        <div
+          class="bono-card reveal reveal-delay-4"
+          onclick="abrirModal('bono-grupo')"
+        >
+          <div class="bono-icono">👥</div>
+          <h3>Bono Grupo</h3>
+          <p class="bono-desc">Bus completo (30 pers.)</p>
+          <p class="bono-precio">S/120</p>
+          <p class="bono-ahorro">Ahorras S/30</p>
+          <button class="btn-bono">Comprar Bono</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header reveal">
+        <div class="section-tag">Horarios</div>
+        <h2 class="section-title">Rutas y Horarios</h2>
+      </div>
+      <div class="info-grid">
+        <div class="info-card reveal reveal-delay-1">
+          <h4>🚌 Horarios de Salida</h4>
+          <div class="horario-item">
+            <span class="horario-hora">12:00 AM</span
+            ><span class="horario-ruta">Ruta Norte - Centro - Sur</span>
+          </div>
+          <div class="horario-item">
+            <span class="horario-hora">1:00 AM</span
+            ><span class="horario-ruta">Ruta Norte - Centro - Sur</span>
+          </div>
+          <div class="horario-item">
+            <span class="horario-hora">2:00 AM</span
+            ><span class="horario-ruta">Ruta Norte - Centro - Sur</span>
+          </div>
+          <div class="horario-item">
+            <span class="horario-hora">3:00 AM</span
+            ><span class="horario-ruta">Ruta Norte - Centro - Sur</span>
+          </div>
+          <div class="horario-item">
+            <span class="horario-hora">4:00 AM</span
+            ><span class="horario-ruta">Ruta Norte - Centro - Sur</span>
+          </div>
+          <div class="horario-item">
+            <span class="horario-hora">5:00 AM</span
+            ><span class="horario-ruta">Ruta Norte - Centro - Sur</span>
+          </div>
+          <p class="horario-nota">
+            Paradas en puntos estratégicos de cada zona.
+          </p>
+        </div>
+        <div class="info-card reveal reveal-delay-2">
+          <h4>📍 Rutas del Bus</h4>
+          <div class="ruta-item">
+            <div class="ruta-circulo ruta-norte"></div>
+            <div>
+              <strong>Ruta Norte</strong>
+              <p>
+                Discoteca → Av. Principal → Zona Residencial Norte → Terminal
+                Norte
+              </p>
+            </div>
+          </div>
+          <div class="ruta-item">
+            <div class="ruta-circulo ruta-centro"></div>
+            <div>
+              <strong>Ruta Centro</strong>
+              <p>
+                Discoteca → Plaza Mayor → Av. Central → Barrio Histórico →
+                Estación Central
+              </p>
+            </div>
+          </div>
+          <div class="ruta-item">
+            <div class="ruta-circulo ruta-sur"></div>
+            <div>
+              <strong>Ruta Sur</strong>
+              <p>Discoteca → Malecón → Zona Hotelera → Terminal Sur</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="transporte-cta reveal">
+        <h3>¿Prefieres ir en grupo?</h3>
+        <p>
+          Reserva el bus completo para tu grupo o evento privado. Capacidad para
+          30 personas.
+        </p>
+        <button class="boton" onclick="abrirModal('bus-completo')">
+          Reservar Bus Completo
+        </button>
+      </div>
+    </section>
+
+    <div id="modal-transporte" class="modal hidden">
+      <div class="modal-contenido">
+        <span class="modal-cerrar" onclick="cerrarModal()">&times;</span>
+        <h2 id="modal-titulo"></h2>
+        <div id="modal-cuerpo"></div>
+      </div>
+    </div>
+
+    <footer><p>© 2026 NIGHT ZONE | Todos los derechos reservados</p></footer>
+    <script src="carrito.js"></script>
+    <script>
+      const bonos = {
+        "bono-simple": {
+          nombre: "Bono Simple - 1 Viaje",
+          precio: 7,
+          desc: "1 viaje en bus compartido",
+        },
+        "bono-plus": {
+          nombre: "Bono Plus - 5 Viajes",
+          precio: 30,
+          desc: "5 viajes en bus compartido",
+        },
+        "bono-premium": {
+          nombre: "Bono Premium - 10 Viajes + Taxi",
+          precio: 55,
+          desc: "10 viajes en bus + 1 taxi gratis",
+        },
+        "bono-grupo": {
+          nombre: "Bono Grupo - Bus Completo",
+          precio: 120,
+          desc: "Bus completo para 30 personas",
+        },
+      };
+      function abrirModal(tipo) {
+        const m = document.getElementById("modal-transporte");
+        const t = document.getElementById("modal-titulo");
+        const c = document.getElementById("modal-cuerpo");
+        m.classList.remove("hidden");
+        if (tipo === "taxi") {
+          t.textContent = "🚕 Solicitar Taxi Privado";
+          c.innerHTML =
+            '<form id="form-taxi" onsubmit="enviarTaxi(event)"><div class="modal-campo"><label>Nombre completo</label><input type="text" id="taxi-nombre" required placeholder="Tu nombre"></div><div class="modal-campo"><label>¿Cuántas personas? (máx. 4)</label><input type="number" id="taxi-personas" min="1" max="4" value="1" required></div><div class="modal-campo"><label>Destino</label><input type="text" id="taxi-destino" required placeholder="¿A dónde te dirigimos?"></div><div class="modal-campo"><label>Teléfono de contacto</label><input type="tel" id="taxi-telefono" required placeholder="999 999 999"></div><p class="modal-precio">Precio: <strong>S/15</strong> por persona</p><button type="submit" class="btn-pagar">✅ Solicitar Taxi</button></form>';
+        } else if (tipo === "bus") {
+          t.textContent = "🚌 Reservar Bus Compartido";
+          c.innerHTML =
+            '<form id="form-bus" onsubmit="enviarBus(event)"><div class="modal-campo"><label>Nombre completo</label><input type="text" id="bus-nombre" required placeholder="Tu nombre"></div><div class="modal-campo"><label>Asientos</label><input type="number" id="bus-asientos" min="1" max="30" value="1" required></div><div class="modal-campo"><label>Ruta</label><select id="bus-ruta" required><option value="">Selecciona una ruta</option><option value="1">Ruta Norte</option><option value="2">Ruta Centro</option><option value="3">Ruta Sur</option></select></div><div class="modal-campo"><label>Hora de salida</label><select id="bus-hora" required><option value="">Selecciona una hora</option><option value="12:00 AM">12:00 AM</option><option value="1:00 AM">1:00 AM</option><option value="2:00 AM">2:00 AM</option><option value="3:00 AM">3:00 AM</option><option value="4:00 AM">4:00 AM</option><option value="5:00 AM">5:00 AM</option></select></div><p class="modal-precio">Precio: <strong>S/8</strong> por persona</p><button type="submit" class="btn-pagar">✅ Reservar Asiento</button></form>';
+        } else if (tipo === "bus-completo") {
+          t.textContent = "🚌 Reservar Bus Completo";
+          c.innerHTML =
+            '<form id="form-bus-completo" onsubmit="enviarBusCompleto(event)"><div class="modal-campo"><label>Nombre del responsable</label><input type="text" id="bc-nombre" required placeholder="Tu nombre"></div><div class="modal-campo"><label>Ocasión</label><input type="text" id="bc-evento" required placeholder="Ej: Cumpleaños, Despedida, Evento corporativo"></div><div class="modal-campo"><label>Teléfono de contacto</label><input type="tel" id="bc-telefono" required placeholder="999 999 999"></div><p class="modal-precio">Precio especial: <strong>S/120</strong> el bus completo</p><button type="submit" class="btn-pagar">✅ Reservar Bus Completo</button></form>';
+        } else if (bonos[tipo]) {
+          const b = bonos[tipo];
+          t.textContent = "🎫 Comprar " + b.nombre;
+          c.innerHTML =
+            '<form id="form-bono" onsubmit="comprarBono(event,\'' +
+            tipo +
+            '\')"><div class="modal-campo"><label>Nombre completo</label><input type="text" id="bono-nombre" required placeholder="Tu nombre"></div><div class="modal-campo"><label>Correo electrónico</label><input type="email" id="bono-email" required placeholder="tucorreo@ejemplo.com"></div><div class="modal-campo"><label>Cantidad de bonos</label><input type="number" id="bono-cantidad" min="1" max="10" value="1" required></div><p class="modal-precio">' +
+            b.desc +
+            " — <strong>S/" +
+            b.precio +
+            '</strong> c/u</p><button type="submit" class="btn-pagar">🛒 Agregar al Carrito</button></form>';
+        }
+      }
+      function cerrarModal() {
+        document.getElementById("modal-transporte").classList.add("hidden");
+      }
+      function enviarTaxi(e) {
+        e.preventDefault();
+        const d = {
+          nombre: document.getElementById("taxi-nombre").value,
+          personas: document.getElementById("taxi-personas").value,
+          destino: document.getElementById("taxi-destino").value,
+          telefono: document.getElementById("taxi-telefono").value,
+        };
+        cerrarModal();
+        mostrarExito(
+          "🚕 Taxi solicitado con éxito!",
+          "<p><strong>Nombre:</strong> " +
+            d.nombre +
+            "</p><p><strong>Personas:</strong> " +
+            d.personas +
+            "</p><p><strong>Destino:</strong> " +
+            d.destino +
+            "</p><p><strong>Teléfono:</strong> " +
+            d.telefono +
+            '</p><p style="margin-top:16px;color:#00e5ff">🚕 Tu taxi estará en la puerta en 5-10 minutos.</p>',
+        );
+      }
+      function enviarBus(e) {
+        e.preventDefault();
+        const rutas = ["", "Ruta Norte", "Ruta Centro", "Ruta Sur"];
+        const d = {
+          nombre: document.getElementById("bus-nombre").value,
+          asientos: document.getElementById("bus-asientos").value,
+          ruta: rutas[parseInt(document.getElementById("bus-ruta").value)],
+          hora: document.getElementById("bus-hora").value,
+        };
+        const total = parseInt(d.asientos) * 8;
+        cerrarModal();
+        mostrarExito(
+          "🚌 Reserva de bus confirmada!",
+          "<p><strong>Nombre:</strong> " +
+            d.nombre +
+            "</p><p><strong>Asientos:</strong> " +
+            d.asientos +
+            "</p><p><strong>Ruta:</strong> " +
+            d.ruta +
+            "</p><p><strong>Hora:</strong> " +
+            d.hora +
+            "</p><p><strong>Total:</strong> S/" +
+            total +
+            '</p><p style="margin-top:16px;color:#00e5ff">🚌 Preséntate en la entrada principal 5 minutos antes.</p>',
+        );
+      }
+      function enviarBusCompleto(e) {
+        e.preventDefault();
+        const d = {
+          nombre: document.getElementById("bc-nombre").value,
+          evento: document.getElementById("bc-evento").value,
+          telefono: document.getElementById("bc-telefono").value,
+        };
+        cerrarModal();
+        mostrarExito(
+          "✅ Bus completo reservado!",
+          "<p><strong>Responsable:</strong> " +
+            d.nombre +
+            "</p><p><strong>Ocasión:</strong> " +
+            d.evento +
+            "</p><p><strong>Teléfono:</strong> " +
+            d.telefono +
+            '</p><p style="margin-top:16px;color:#00e5ff">Te contactaremos para coordinar horario y ruta personalizada.</p><p style="color:#ff00ff">Precio especial: S/120 el bus completo.</p>',
+        );
+      }
+      function comprarBono(e, tipo) {
+        e.preventDefault();
+        const b = bonos[tipo];
+        const nombre = document.getElementById("bono-nombre").value;
+        const c = parseInt(document.getElementById("bono-cantidad").value);
+        const total = b.precio * c;
+        agregarCarrito(b.nombre + " x" + c, total, "", "compra");
+        cerrarModal();
+        mostrarExito(
+          "🎫 Bono agregado al carrito!",
+          "<p><strong>" +
+            b.nombre +
+            "</strong></p><p><strong>Cantidad:</strong> " +
+            c +
+            "</p><p><strong>Total:</strong> S/" +
+            total +
+            '</p><p style="margin-top:16px;color:#00e5ff">Ve al <a href="carrito.html" style="color:#ff00ff">carrito</a> para completar tu compra.</p>',
+        );
+      }
+      function mostrarExito(titulo, html) {
+        const m = document.getElementById("modal-transporte");
+        document.getElementById("modal-titulo").textContent = titulo;
+        document.getElementById("modal-cuerpo").innerHTML =
+          '<div style="text-align:center;padding:10px 0">' +
+          html +
+          '</div><button class="btn-pagar" onclick="cerrarModal()" style="margin-top:16px">Continuar</button>';
+        m.classList.remove("hidden");
+      }
+      document
+        .getElementById("modal-transporte")
+        .addEventListener("click", function (e) {
+          if (e.target === this) cerrarModal();
+        });
+      function revealOnScroll() {
+        const r = document.querySelectorAll(".reveal");
+        const h = window.innerHeight;
+        r.forEach((e) => {
+          if (e.getBoundingClientRect().top < h - 60)
+            e.classList.add("visible");
+        });
+      }
+      window.addEventListener("scroll", revealOnScroll);
+      window.addEventListener("load", revealOnScroll);
+    </script>
+  </body>
+</html>
